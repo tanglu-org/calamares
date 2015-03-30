@@ -1,0 +1,22 @@
+---
+componentName:  tanglu
+
+strings:
+    productName:         Tanglu GNU/Linux
+    shortProductName:    Tanglu
+    version:             3.0 Alpha1
+    shortVersion:        3.0
+    versionedName:       Tanglu GNU/Linux 3.0 Alpha1 "Chromodoris"
+    shortVersionedName:  Tanglu 3.0
+    bootloaderEntryName: Tanglu
+
+images:
+    productLogo:         "tanglu-mono.png"
+    productIcon:         "tanglu-mono.png"
+
+slideshow:               "show.qml"
+
+style:
+   sidebarBackground:    "#292F34"
+   sidebarText:          "#FFFFFF"
+   sidebarTextSelect:    "#292F34"

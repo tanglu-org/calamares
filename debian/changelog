@@ -1,0 +1,44 @@
+calamares (1.0.1+git20150329.a253101258-0tanglu2) staging; urgency=medium
+
+  * Make release known as "Alpha1" instead of "Development Snapshot"
+
+ -- Matthias Klumpp <mak@debian.org>  Mon, 30 Mar 2015 08:12:54 +0200
+
+calamares (1.0.1+git20150329.a253101258-0tanglu1) staging; urgency=medium
+
+  * New upstream Git snapshot
+  * Update Tanglu settings and branding
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 29 Mar 2015 20:10:46 +0200
+
+calamares (1.0.1-0tanglu5) staging; urgency=medium
+
+  * Add a temporary icon for the live-installer
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 01 Mar 2015 22:10:04 +0100
+
+calamares (1.0.1-0tanglu4) staging; urgency=medium
+
+  * Make Tanglu branding the default
+
+ -- Matthias Klumpp <mak@debian.org>  Tue, 17 Feb 2015 22:42:10 +0100
+
+calamares (1.0.1-0tanglu3) staging; urgency=medium
+
+  * Change build dependencies to be more strict for the
+    Boost.Python library.
+
+ -- Matthias Klumpp <mak@debian.org>  Tue, 17 Feb 2015 22:15:58 +0100
+
+calamares (1.0.1-0tanglu2) staging; urgency=medium
+
+  * Add missing dependency on qtquick-controls
+  * Add some minimal Tanglu branding
+
+ -- Matthias Klumpp <mak@debian.org>  Tue, 17 Feb 2015 14:42:10 +0100
+
+calamares (1.0.1-0tanglu1) staging; urgency=medium
+
+  * Initial release for Tanglu
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 08 Feb 2015 18:30:15 +0100

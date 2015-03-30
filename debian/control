@@ -1,0 +1,54 @@
+Source: calamares
+Section: devel
+Priority: optional
+Maintainer: Tanglu Developers <tanglu-devel-discuss@lists.tanglu.org>
+Build-Depends: cmake,
+               debhelper (>= 9),
+               extra-cmake-modules,
+               gettext,
+               libatasmart-dev,
+               libboost-python-dev (>= 1.55),
+               libkf5config-dev,
+               libkf5coreaddons-dev,
+               libkf5i18n-dev,
+               libkf5solid-dev,
+               libparted-dev,
+               libpolkit-qt5-1-dev,
+               libqt5svg5-dev,
+               libyaml-cpp-dev,
+               os-prober,
+               pkg-config,
+               pkg-kde-tools,
+               python3-dev (>= 3.4),
+               qtbase5-dev,
+               qtdeclarative5-dev,
+               qttools5-dev,
+               qttools5-dev-tools
+Standards-Version: 3.9.6
+Homepage: https://github.com/calamares/calamares
+Vcs-Git: http://github.com/calamares/calamares-debian.git
+Vcs-Browser: https://github.com/calamares/calamares-debian.git
+
+Package: calamares
+Architecture: any
+Depends: qml-module-qtquick-controls,
+         squashfs-tools,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Distribution-independent installer framework
+ Calamares is the live-installer used in Tanglu.
+ It is able to install a live Linux system onto a hard drive.
+ .
+ This package contains the calamares installer framework.
+
+Package: calamares-dbg
+Architecture: any
+Priority: extra
+Section: debug
+Depends: calamares (= ${binary:Version}),
+         ${misc:Depends}
+Description: distribution-independent installer framework -- debug symbols
+ Calamares is the live-installer used in Tanglu.
+ It is able to install a live Linux system onto a hard drive.
+ .
+ This package contains the debugging symbols for calamares.

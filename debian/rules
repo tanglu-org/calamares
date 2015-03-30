@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --dbg-package=calamares-dbg --with kf5 --parallel
+
+override_dh_auto_configure:
+	cp -r $(CURDIR)/debian/branding/tanglu $(CURDIR)/src/branding/tanglu
+	dh_auto_configure -- -DWITH_PARTITIONMANAGER=1
+
+override_dh_install:
+	dh_install --list-missing
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf $(CURDIR)/src/branding/tanglu

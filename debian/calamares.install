@@ -1,0 +1,6 @@
+debian/config/live-installer.png /usr/share/icons/hicolor/64x64/apps/
+debian/config/packages.conf /etc/calamares/modules/
+debian/config/settings.conf /etc/calamares/
+debian/config/tanglu-live-installer.desktop /usr/share/applications/
+debian/config/unpackfs.conf /etc/calamares/modules/
+usr/*
