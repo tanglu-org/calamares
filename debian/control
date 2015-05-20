@@ -32,6 +32,7 @@ Vcs-Browser: https://gitlab.com/tanglu/calamares
 Package: calamares
 Architecture: any
 Depends: calamares-branding,
+         policykit-1,
          qml-module-qtquick-controls,
          squashfs-tools,
          ${misc:Depends},
@@ -69,8 +70,8 @@ Description: Distribution-independent installer framework (UI shared library)
 Package: calamares-dev
 Architecture: any
 Section: libdevel
-Depends: libcalamares1.0.0,
-         libcalamaresui1.0.0,
+Depends: libcalamares1.0.0 (= ${binary:Version}),
+         libcalamaresui1.0.0 (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Distribution-independent installer framework (developer resources)
