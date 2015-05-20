@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "gui/PartitionSplitterWidget.h"
+#include "gui/PartitionPreview.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -59,6 +60,10 @@ AlongsidePage::AlongsidePage( QWidget* parent )
     partitionsLabel->setBuddy( m_partitionsComboBox );
 
     partitionsComboLayout->addStretch();
+
+    m_previewWidget = new PartitionPreview;
+    m_previewWidget->setLabelsVisible( true );
+    mainLayout->addWidget( m_previewWidget );
 
     QLabel* allocateSpaceLabel = new QLabel();
     mainLayout->addWidget( allocateSpaceLabel );
@@ -138,6 +143,14 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
                     }
                 }
 
+                Device* deviceBefore = m_core->createImmutableDeviceCopy( dev );
+
+                PartitionModel* partitionModelBefore = new PartitionModel;
+                partitionModelBefore->init( deviceBefore );
+                deviceBefore->setParent( partitionModelBefore );
+                partitionModelBefore->setParent( m_previewWidget );
+
+                m_previewWidget->setModel( partitionModelBefore );
                 m_splitterWidget->init( allPartitionItems );
 
                 m_splitterWidget->setSplitPartition( candidate->partitionPath(),
@@ -164,7 +177,7 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
     connect( m_splitterWidget, &PartitionSplitterWidget::partitionResized,
              this, [ this ]( const QString& path, qint64 size, qint64 sizeNext )
     {
-        m_sizeLabel->setText( tr( "With this operation, the partition <b>%1</b> which contains "
+        m_sizeLabel->setText( tr( "With this operation, the partition <strong>%1</strong> which contains "
                                   "%4 will be shrunk "
                                   "to %2MB and a new %3MB partition will be created for %5." )
                               .arg( path )

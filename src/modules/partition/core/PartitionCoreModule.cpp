@@ -151,6 +151,17 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
     return info->partitionModel.data();
 }
 
+
+Device*
+PartitionCoreModule::createImmutableDeviceCopy( Device* device ) const
+{
+    CoreBackend* backend = CoreBackendManager::self()->backend();
+
+    Device* deviceBefore = backend->scanDevice( device->deviceNode() );
+    return deviceBefore;
+}
+
+
 void
 PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::TableType type )
 {
@@ -435,6 +446,7 @@ PartitionCoreModule::createSummaryInfo() const
             continue;
         SummaryInfo summaryInfo;
         summaryInfo.deviceName = deviceInfo->device->name();
+        summaryInfo.deviceNode = deviceInfo->device->deviceNode();
 
         Device* deviceBefore = backend->scanDevice( deviceInfo->device->deviceNode() );
         summaryInfo.partitionModelBefore = new PartitionModel;

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -44,7 +44,11 @@ public:
         VersionedName,
         ShortVersionedName,
         ShortProductName,
-        BootloaderEntryName
+        BootloaderEntryName,
+        ProductUrl,
+        SupportUrl,
+        KnownIssuesUrl,
+        ReleaseNotesUrl
     };
 
     enum ImageEntry : short
@@ -68,6 +72,7 @@ public:
     QString descriptorPath() const;
     QString componentName() const;
     QString componentDirectory() const;
+    QString translationsPathPrefix() const;
 
     QString string( Branding::StringEntry stringEntry ) const;
     QString styleString( Branding::StyleEntry styleEntry ) const;
@@ -97,6 +102,7 @@ private:
     QMap< QString, QString > m_images;
     QMap< QString, QString > m_style;
     QString m_slideshowPath;
+    QString m_translationsPathPrefix;
 };
 
 }

@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@ public:
     struct SummaryInfo
     {
         QString deviceName;
+        QString deviceNode;
         PartitionModel* partitionModelBefore;
         PartitionModel* partitionModelAfter;
     };
@@ -63,6 +64,14 @@ public:
     DeviceModel* deviceModel() const;
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
+
+    //HACK: all devices change over time, and together make up the state of the CoreModule.
+    //      However this makes it hard to show the *original* state of a device.
+    //      With this horrible hack we rescan a single device node to create a Device object
+    //      that contains the current state of a disk regardless of subsequent changes.
+    //      This should probably be redone some other way.
+    //              -- Teo 4/2015
+    Device* createImmutableDeviceCopy( Device* device ) const;
 
     QAbstractItemModel* bootLoaderModel() const;
 

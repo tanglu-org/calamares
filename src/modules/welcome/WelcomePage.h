@@ -16,22 +16,36 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PREPARECHECKWIDGET_H
-#define PREPARECHECKWIDGET_H
+#ifndef WELCOMEPAGE_H
+#define WELCOMEPAGE_H
 
-#include <QLabel>
+#include <QWidget>
 
-class PrepareCheckWidget : public QWidget
+namespace Ui
+{
+class WelcomePage;
+}
+
+class RequirementsChecker;
+
+class WelcomePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PrepareCheckWidget( bool checked,
-                                 QWidget* parent = nullptr );
+    explicit WelcomePage( RequirementsChecker* requirementsChecker,
+                          QWidget* parent = nullptr );
 
-    void setText( const QString& text );
+    void setUpLinks( bool showSupportUrl,
+                     bool showKnownIssuesUrl,
+                     bool showReleaseNotesUrl );
+
+protected:
+    void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
+
 private:
-    QLabel* m_textLabel;
-    QLabel* m_iconLabel;
+    void initLanguages();
+    Ui::WelcomePage* ui;
+    RequirementsChecker* m_requirementsChecker;
 };
 
-#endif // PREPARECHECKWIDGET_H
+#endif // WELCOMEPAGE_H
