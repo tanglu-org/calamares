@@ -45,7 +45,7 @@ Description: Distribution-independent installer framework
 
 Package: libcalamares1.0.0
 Architecture: any
-Section: lib
+Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Recommends: calamares
@@ -57,7 +57,7 @@ Description: Distribution-independent installer framework (shared library)
 
 Package: libcalamaresui1.0.0
 Architecture: any
-Section: lib
+Section: libs
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Recommends: calamares
