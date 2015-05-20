@@ -10,6 +10,7 @@ License: GPL-3+
 Files: debian/*
 Copyright: 2014, Rohan Garg <shadeslayer@systems>
   2015, Matthias Klumpp <mak@debian.org>
+License: GPL-3+
 
 License: GPL-3+
  This package is free software; you can redistribute it and/or modify
