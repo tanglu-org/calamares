@@ -1,0 +1,4 @@
+usr/include/*
+usr/lib/cmake/*
+usr/lib/libcalamares.so
+usr/lib/libcalamaresui.so

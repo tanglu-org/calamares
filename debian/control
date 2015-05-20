@@ -31,16 +31,53 @@ Vcs-Browser: https://gitlab.com/tanglu/calamares
 
 Package: calamares
 Architecture: any
-Depends: qml-module-qtquick-controls,
+Depends: calamares-branding,
+         qml-module-qtquick-controls,
          squashfs-tools,
-         calamares-branding,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Distribution-independent installer framework
  Calamares is the live-installer used in Tanglu.
  It is able to install a live Linux system onto a hard drive.
  .
- This package contains the calamares installer framework.
+ This package contains the Calamares installer framework.
+
+Package: libcalamares1.0.0
+Architecture: any
+Section: lib
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: calamares
+Description: Distribution-independent installer framework (shared library)
+ Calamares is the live-installer used in Tanglu.
+ It is able to install a live Linux system onto a hard drive.
+ .
+ This package contains the basic, non-GUI Calamares shared library.
+
+Package: libcalamaresui1.0.0
+Architecture: any
+Section: lib
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: calamares
+Description: Distribution-independent installer framework (UI shared library)
+ Calamares is the live-installer used in Tanglu.
+ It is able to install a live Linux system onto a hard drive.
+ .
+ This package contains the Calamares GUI shared library.
+
+Package: calamares-dev
+Architecture: any
+Section: libdevel
+Depends: libcalamares1.0.0,
+         libcalamaresui1.0.0,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Distribution-independent installer framework (developer resources)
+ Calamares is the live-installer used in Tanglu.
+ It is able to install a live Linux system onto a hard drive.
+ .
+ This package contains developer resources for developing Calamares plugins.
 
 Package: calamares-dbg
 Architecture: any
