@@ -16,17 +16,20 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GREETINGPAGEPLUGIN_H
-#define GREETINGPAGEPLUGIN_H
+#ifndef WELCOMEPAGEPLUGIN_H
+#define WELCOMEPAGEPLUGIN_H
 
 #include <QObject>
 
 #include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
 
-class GreetingPage;
+#include <QVariantMap>
 
-class PLUGINDLLEXPORT GreetingViewStep : public Calamares::ViewStep
+class WelcomePage;
+class RequirementsChecker;
+
+class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
     Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
@@ -34,8 +37,8 @@ class PLUGINDLLEXPORT GreetingViewStep : public Calamares::ViewStep
     Q_INTERFACES( Calamares::ViewStep )
 
 public:
-    explicit GreetingViewStep( QObject* parent = nullptr );
-    virtual ~GreetingViewStep();
+    explicit WelcomeViewStep( QObject* parent = nullptr );
+    virtual ~WelcomeViewStep();
 
     QString prettyName() const override;
 
@@ -52,8 +55,12 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
 private:
-    GreetingPage* m_widget;
+    WelcomePage* m_widget;
+
+    RequirementsChecker* m_requirementsChecker;
 };
 
-#endif // GREETINGPAGEPLUGIN_H
+#endif // WELCOMEPAGEPLUGIN_H

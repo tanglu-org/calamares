@@ -42,6 +42,7 @@ ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
 {
     m_ui->setupUi( this );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
+    m_ui->partitionPreview->setLabelsVisible( true );
 
 //    updateButtons();
 
@@ -68,6 +69,16 @@ bool
 ReplacePage::isNextEnabled() const
 {
     return m_nextEnabled;
+}
+
+
+void
+ReplacePage::reset()
+{
+    int oldDeviceIndex = m_ui->deviceComboBox->currentIndex();
+    m_core->revert();
+    m_ui->deviceComboBox->setCurrentIndex( oldDeviceIndex );
+    updateFromCurrentDevice();
 }
 
 
@@ -105,7 +116,7 @@ ReplacePage::onPartitionSelected()
 {
     if ( m_ui->partitionTreeView->currentIndex() == QModelIndex() )
     {
-        updateStatus( CalamaresUtils::Partitions,
+        updateStatus( CalamaresUtils::PartitionPartition,
                       tr( "Select where to install %1.<br/>"
                           "<font color=\"red\">Warning: </font>this will delete all files "
                           "on the selected partition." )
@@ -203,7 +214,7 @@ ReplacePage::onPartitionSelected()
         if ( partition->capacity() < requiredSpaceB )
         {
             updateStatus( CalamaresUtils::Fail,
-                          tr( "<b>%4</b><br/><br/>"
+                          tr( "<strong>%4</strong><br/><br/>"
                               "The partition %1 is too small for %2. Please select a partition "
                               "with capacity at least %3 GiB." )
                           .arg( partition->partitionPath() )
@@ -216,8 +227,8 @@ ReplacePage::onPartitionSelected()
             return;
         }
 
-        updateStatus( CalamaresUtils::Partitions,
-                      tr( "<b>%3</b><br/><br/>"
+        updateStatus( CalamaresUtils::PartitionPartition,
+                      tr( "<strong>%3</strong><br/><br/>"
                           "%1 will be installed on %2.<br/>"
                           "<font color=\"red\">Warning: </font>all data on partition"
                           "%2 will be lost.")
