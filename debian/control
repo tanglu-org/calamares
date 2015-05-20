@@ -1,5 +1,5 @@
 Source: calamares
-Section: devel
+Section: admin
 Priority: optional
 Maintainer: Tanglu Developers <tanglu-devel-discuss@lists.tanglu.org>
 Build-Depends: cmake,
@@ -26,13 +26,14 @@ Build-Depends: cmake,
                qttools5-dev-tools
 Standards-Version: 3.9.6
 Homepage: https://github.com/calamares/calamares
-Vcs-Git: http://github.com/calamares/calamares-debian.git
-Vcs-Browser: https://github.com/calamares/calamares-debian.git
+Vcs-Git: https://gitlab.com/tanglu/calamares.git
+Vcs-Browser: https://gitlab.com/tanglu/calamares
 
 Package: calamares
 Architecture: any
 Depends: qml-module-qtquick-controls,
          squashfs-tools,
+         calamares-branding,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Distribution-independent installer framework
