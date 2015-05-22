@@ -1,3 +1,10 @@
+calamares (1.0.1+git20150520.d5a42a65-0tanglu2) staging; urgency=medium
+
+  * Fix section names
+  * Replace greeting/prepare module with welcome module
+
+ -- Matthias Klumpp <mak@debian.org>  Fri, 22 May 2015 21:02:34 +0200
+
 calamares (1.0.1+git20150520.d5a42a65-0tanglu1) staging; urgency=medium
 
   * New upstream Git snapshot: 20150520/d5a42a65
