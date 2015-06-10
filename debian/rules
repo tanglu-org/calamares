@@ -1,10 +1,13 @@
 #!/usr/bin/make -f
 
+CALAMARES_BUILD_FLAGS = -DWITH_PARTITIONMANAGER=1 \
+		-DCALAMARES_BOOST_PYTHON3_COMPONENT=python-py34
+
 %:
 	dh $@ --dbg-package=calamares-dbg --with kf5 --parallel
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DWITH_PARTITIONMANAGER=1
+	dh_auto_configure -- $(CALAMARES_BUILD_FLAGS)
 
 override_dh_install:
 	dh_install --list-missing
