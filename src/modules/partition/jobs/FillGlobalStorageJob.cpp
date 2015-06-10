@@ -25,6 +25,7 @@
 #include <core/PartitionIterator.h>
 #include <core/PMUtils.h>
 #include "Branding.h"
+#include "utils/Logger.h"
 
 // CalaPM
 #include <core/device.h>
@@ -41,16 +42,22 @@ typedef QHash<QString, QString> UuidForPartitionHash;
 static const char* UUID_DIR = "/dev/disk/by-uuid";
 
 static UuidForPartitionHash
-findPartitionUuids()
+findPartitionUuids( QList < Device* > devices )
 {
-    QDir dir( UUID_DIR );
+    cDebug() << "Gathering UUIDs for partitions that exist now.";
     UuidForPartitionHash hash;
-    for ( auto info : dir.entryInfoList( QDir::Files ) )
+    foreach ( Device* device, devices )
     {
-        QString uuid = info.fileName();
-        QString path = info.canonicalFilePath();
-        hash.insert( path, uuid );
+        for ( auto it = PartitionIterator::begin( device );
+              it != PartitionIterator::end( device ); ++it )
+        {
+            Partition* p = *it;
+            QString path = p->partitionPath();
+            QString uuid = p->fileSystem().readUUID( p->partitionPath() );
+            hash.insert( path, uuid );
+        }
     }
+    cDebug() << hash;
     return hash;
 }
 
@@ -62,6 +69,10 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fs" ] = partition->fileSystem().name();
     map[ "uuid" ] = uuid;
+    cDebug() << partition->partitionPath()
+             << "mtpoint:" << PartitionInfo::mountPoint( partition )
+             << "fs:" << partition->fileSystem().name()
+             << uuid;
     return map;
 }
 
@@ -149,11 +160,17 @@ FillGlobalStorageJob::exec()
 QVariant
 FillGlobalStorageJob::createPartitionList() const
 {
-    UuidForPartitionHash hash = findPartitionUuids();
+    UuidForPartitionHash hash = findPartitionUuids( m_devices );
     QVariantList lst;
+    cDebug() << "Writing to GlobalStorage[\"partitions\"]";
     for ( auto device : m_devices )
-        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+    {
+        for ( auto it = PartitionIterator::begin( device );
+              it != PartitionIterator::end( device ); ++it )
+        {
             lst << mapForPartition( *it, hash.value( ( *it )->partitionPath() ) );
+        }
+    }
     return lst;
 }
 

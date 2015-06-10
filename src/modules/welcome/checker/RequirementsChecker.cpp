@@ -25,6 +25,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
@@ -37,6 +38,8 @@
 #include <QLabel>
 #include <QProcess>
 #include <QTimer>
+
+#include <unistd.h> //geteuid
 
 RequirementsChecker::RequirementsChecker( QObject* parent )
     : QObject( parent )
@@ -62,6 +65,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool enoughRam = false;
         bool hasPower = false;
         bool hasInternet = false;
+        bool isRoot = false;
 
         qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
@@ -79,8 +83,11 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         if ( m_entriesToCheck.contains( "internet" ) )
             hasInternet = checkHasInternet();
 
-        cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet: "
-                 << enoughStorage << enoughRam << hasPower << hasInternet;
+        if ( m_entriesToCheck.contains( "root" ) )
+            isRoot = checkIsRoot();
+
+        cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet, isRoot: "
+                 << enoughStorage << enoughRam << hasPower << hasInternet << isRoot;
 
         QList< PrepareEntry > checkEntries;
         foreach ( const QString& entry, m_entriesToCheck )
@@ -121,6 +128,15 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                     hasInternet,
                     m_entriesToRequire.contains( entry )
                 } );
+            else if ( entry == "root" )
+                checkEntries.append( {
+                    entry,
+                    [this]{ return QString(); }, //we hide it
+                    [this]{ return tr( "The installer is not running with administrator rights." ); },
+                    isRoot,
+                    m_entriesToRequire.contains( entry )
+                } );
+
         }
 
         m_actualWidget->init( checkEntries );
@@ -230,16 +246,10 @@ RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 bool
 RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 {
-    // A line in meminfo looks like this, with {print $2} we grab the second column.
-    // MemTotal:        8133432 kB
-
-    QProcess p;
-    p.start( "awk", { "/MemTotal/ {print $2}", "/proc/meminfo" } );
-    p.waitForFinished();
-    QString memoryLine = p.readAllStandardOutput().simplified();
-    qint64 availableRam = memoryLine.toLongLong() * 1024;
-
-    return availableRam >= requiredRam;
+    qint64 availableRam = CalamaresUtils::getPhysicalMemoryB();
+    if ( !availableRam )
+        availableRam = CalamaresUtils::getTotalMemoryB();
+    return availableRam >= requiredRam * 0.95; // because MemTotal is variable
 }
 
 
@@ -326,6 +336,13 @@ RequirementsChecker::checkHasInternet()
     }
 
     return nmState == NM_STATE_CONNECTED_GLOBAL;
+}
+
+
+bool
+RequirementsChecker::checkIsRoot()
+{
+    return !geteuid();
 }
 
 

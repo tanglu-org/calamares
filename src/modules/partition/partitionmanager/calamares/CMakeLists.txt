@@ -38,7 +38,9 @@ endif (LIBPARTED_FS_RESIZE_LIBRARY_SUPPORT)
 
 # Build flags
 add_definitions(-D'VERSION="0.0.0"' -DENABLE_UDISKS2 -DCALAMARES)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined -Wall -Woverloaded-virtual -std=c++11")
+if(CMAKE_COMPILER_IS_GNUCXX)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined -Wall -Woverloaded-virtual -std=c++11")
+endif()
 
 add_subdirectory(fatlabel)
 
