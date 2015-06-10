@@ -1,3 +1,10 @@
+calamares (1.0.1+git20150610.1aa3d5af-0tanglu1) staging; urgency=medium
+
+  * New upstream Git snapshot: 1.0.1+git20150610.1aa3d5af
+  * Define Boost.Python3 component manually to fix build failure
+
+ -- Matthias Klumpp <mak@debian.org>  Wed, 10 Jun 2015 19:22:02 +0200
+
 calamares (1.0.1+git20150520.d5a42a65-0tanglu3) staging; urgency=medium
 
   * Add launch wrapper to Calamares to fix GNOME starting issue
