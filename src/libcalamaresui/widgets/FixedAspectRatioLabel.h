@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,24 +16,25 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "TextTreeItem.h"
+#ifndef FIXEDASPECTRATIOLABEL_H
+#define FIXEDASPECTRATIOLABEL_H
 
-#include "ProgressTreeModel.h"
+#include <QLabel>
+#include <QPixmap>
 
-TextTreeItem::TextTreeItem( std::function< QString() > textReturner,
-                            ProgressTreeItem* parent )
-    : ProgressTreeItem( parent )
+class FixedAspectRatioLabel : public QLabel
 {
-    m_textReturner = textReturner;
-}
+    Q_OBJECT
+public:
+    explicit FixedAspectRatioLabel( QWidget* parent = nullptr );
+    virtual ~FixedAspectRatioLabel();
 
+public slots:
+    virtual void setPixmap( const QPixmap &pixmap );
+    void resizeEvent( QResizeEvent* event ) override;
 
-QVariant
-TextTreeItem::data( int role ) const
-{
-    if ( role == ProgressTreeModel::ProgressTreeItemRole )
-        return this;
-    if ( role == Qt::DisplayRole )
-        return m_textReturner();
-    return QVariant();
-}
+private:
+    QPixmap m_pixmap;
+};
+
+#endif // FIXEDASPECTRATIOLABEL_H

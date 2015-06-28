@@ -1,6 +1,5 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Rohan Garg <rohan@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -17,23 +16,35 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SETHOSTNAMEJOB_CPP_H
-#define SETHOSTNAMEJOB_CPP_H
+#include "FixedAspectRatioLabel.h"
 
-#include <Job.h>
 
-class SetHostNameJob : public Calamares::Job
+FixedAspectRatioLabel::FixedAspectRatioLabel( QWidget* parent )
+    : QLabel( parent )
+{}
+
+
+FixedAspectRatioLabel::~FixedAspectRatioLabel()
+{}
+
+
+void
+FixedAspectRatioLabel::setPixmap( const QPixmap& pixmap )
 {
-    Q_OBJECT
-public:
-    SetHostNameJob( const QString& hostname );
-    QString prettyName() const override;
-    QString prettyDescription() const override;
-    QString prettyStatusMessage() const override;
-    Calamares::JobResult exec() override;
-private:
-    const QString m_hostname;
-};
+    m_pixmap = pixmap;
+    QLabel::setPixmap( pixmap.scaled(
+                           contentsRect().size(),
+                           Qt::KeepAspectRatio,
+                           Qt::SmoothTransformation ) );
+}
 
 
-#endif // SETHOSTNAMEJOB_CPP_H
+void
+FixedAspectRatioLabel::resizeEvent( QResizeEvent* event )
+{
+    QLabel::setPixmap( m_pixmap.scaled(
+                           contentsRect().size(),
+                           Qt::KeepAspectRatio,
+                           Qt::SmoothTransformation ) );
+}
+

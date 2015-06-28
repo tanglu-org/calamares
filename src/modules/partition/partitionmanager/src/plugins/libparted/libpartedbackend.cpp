@@ -461,8 +461,12 @@ QList<Device*> LibPartedBackend::scanDevices()
 		pedDevice = ped_device_get_next(pedDevice);
 		if (!pedDevice)
 			break;
-		if (pedDevice->type == PED_DEVICE_DM)
+        if (pedDevice->type == PED_DEVICE_DM ||
+            pedDevice->type == PED_DEVICE_LOOP ||
+            pedDevice->type == PED_DEVICE_UNKNOWN )
 			continue;
+        if (pedDevice->read_only)
+            continue;
 		QString path = QString::fromUtf8(pedDevice->path);
 		Device* d = scanDevice(path);
 		if (d)
