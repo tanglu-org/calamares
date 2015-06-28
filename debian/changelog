@@ -1,3 +1,10 @@
+calamares (1.1-0tanglu1) staging; urgency=medium
+
+  * New upstream release: 1.1
+  * Drop all patches: Applied upstream
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 28 Jun 2015 22:36:14 +0200
+
 calamares (1.0.1+git20150610.1aa3d5af-0tanglu1) staging; urgency=medium
 
   * New upstream Git snapshot: 1.0.1+git20150610.1aa3d5af
