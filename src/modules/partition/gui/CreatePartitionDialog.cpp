@@ -43,7 +43,10 @@
 static QSet< FileSystem::Type > s_unmountableFS(
 {
     FileSystem::Unformatted,
-    FileSystem::LinuxSwap
+    FileSystem::LinuxSwap,
+    FileSystem::Extended,
+    FileSystem::Unknown,
+    FileSystem::Lvm2_PV
 } );
 
 CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget )
@@ -160,6 +163,8 @@ CreatePartitionDialog::updateMountPointUi()
     }
     m_ui->mountPointLabel->setEnabled( enabled );
     m_ui->mountPointComboBox->setEnabled( enabled );
+    if ( !enabled )
+        m_ui->mountPointComboBox->setCurrentText( QString() );
 }
 
 void
