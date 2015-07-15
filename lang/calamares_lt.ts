@@ -191,17 +191,22 @@ p, li { white-space: pre-wrap; }
         <translation> %1 paleidimo įrašas (MBR)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="72"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="75"/>
         <source>Boot Partition</source>
         <translation>Paleidimo skaidinys</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="77"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="80"/>
         <source>System Partition</source>
         <translation>Sistemos skaidinys</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="110"/>
+        <source>Do not install a boot loader</source>
+        <translation>Nediegti paleidyklės</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="124"/>
         <source>%1 (%2)</source>
         <translation>%1 (%2)</translation>
     </message>
@@ -237,7 +242,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Calamares::InstallationViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="77"/>
+        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="71"/>
         <source>Install</source>
         <translation>Diegti</translation>
     </message>
@@ -372,54 +377,54 @@ Išvestis:
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="68"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;tšaukti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="88"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
         <source>Cancel installation?</source>
         <translation>Atšaukti diegimą?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="89"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Ar tikrai norite atšaukti dabartinio diegimo procesą?
 Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="256"/>
         <source>Continue with setup?</source>
         <translation>Tęsti sąranką?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus jūsų diske.&lt;br/&gt;&lt;strong&gt;Jūs negalėsite atšaukti šių pakeitimų.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
         <source>&amp;Install now</source>
         <translation>Į&amp;diegti dabar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
         <source>Go &amp;back</source>
         <translation>&amp;Grįžti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="304"/>
         <source>&amp;Quit</source>
         <translation>&amp;Baigti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
         <source>Error</source>
         <translation>Klaida</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
         <source>Installation Failed</source>
         <translation>Diegimas nepavyko</translation>
     </message>
@@ -1433,12 +1438,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Pasirinkite diską:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="287"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="264"/>
         <source>Before:</source>
         <translation>Prieš:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="293"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="270"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
@@ -1560,11 +1565,6 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
         <source>Setting up mount points.</source>
         <translation>Nustatomi prijungimo taškai.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
-        <source>Failed to find path for boot loader</source>
-        <translation>Nepavyko rasti kelio iki paleidyklės</translation>
     </message>
 </context>
 <context>

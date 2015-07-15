@@ -191,17 +191,22 @@ p, li { white-space: pre-wrap; }
         <translation>Master Boot Record %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="72"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="75"/>
         <source>Boot Partition</source>
         <translation>Partycja rozruchowa</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="77"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="80"/>
         <source>System Partition</source>
         <translation>Partycja systemowa</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="110"/>
+        <source>Do not install a boot loader</source>
+        <translation>Nie instaluj programu rozruchowego</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="124"/>
         <source>%1 (%2)</source>
         <translation>%1 (%2)</translation>
     </message>
@@ -237,7 +242,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Calamares::InstallationViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="77"/>
+        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="71"/>
         <source>Install</source>
         <translation>Zainstaluj</translation>
     </message>
@@ -372,54 +377,54 @@ Wyjście:
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="68"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Anuluj</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="88"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
         <source>Cancel installation?</source>
         <translation>Anulować instalację?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="89"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Czy na pewno chcesz anulować obecny proces instalacji?
 Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="256"/>
         <source>Continue with setup?</source>
         <translation>Kontynuować z programem instalacyjnym?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>Instalator %1 zamierza przeprowadzić zmiany na Twoim dysku, aby zainstalować %2.&lt;br/&gt;&lt;strong&gt;Nie będziesz mógł cofnąć tych zmian.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
         <source>&amp;Install now</source>
         <translation>&amp;Zainstaluj teraz</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
         <source>Go &amp;back</source>
         <translation>&amp;Cofnij się</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="304"/>
         <source>&amp;Quit</source>
         <translation>W&amp;yjdź</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
         <source>Installation Failed</source>
         <translation>Wystąpił błąd instalacji</translation>
     </message>
@@ -1433,12 +1438,12 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <translation>Wybierz napęd:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="287"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="264"/>
         <source>Before:</source>
         <translation>Przed:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="293"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="270"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
@@ -1560,11 +1565,6 @@ Niektóre systemy plików wymagają zainstalowania zewnętrznych narzędzi, aby 
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
         <source>Setting up mount points.</source>
         <translation>Ustawianie punktów montowania.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
-        <source>Failed to find path for boot loader</source>
-        <translation>Nie odnaleziono ścieżki do programu rozruchowego</translation>
     </message>
 </context>
 <context>
