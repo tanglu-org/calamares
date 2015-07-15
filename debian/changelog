@@ -1,3 +1,19 @@
+
+calamares (1.1-0tanglu3) staging; urgency=medium
+
+  * Allow going forward when root-password is set to invalid
+    - A sudo-based setup is the default, this should fix a nasty bug.
+  * Ask for confirmation if quitting during installation
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 02 Jul 2015 11:40:50 +0200
+
+calamares (1.1-0tanglu2) staging; urgency=medium
+
+  * Do not allow user to set a root password during installation
+    - A "sudo passwd" will still do the job after installation.
+
+ -- Matthias Klumpp <mak@debian.org>  Wed, 01 Jul 2015 10:12:14 +0200
+
 calamares (1.1-0tanglu1) staging; urgency=medium
 
   * New upstream release: 1.1
