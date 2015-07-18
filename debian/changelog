@@ -1,8 +1,14 @@
+calamares (1.1.2-0tanglu1) staging; urgency=medium
+
+  * New upstream bugfix release: 1.1.2
+  * Drop all patches: Applied upstream
+
+ -- Matthias Klumpp <mak@debian.org>  Sat, 18 Jul 2015 08:04:06 +0200
+
 calamares (1.1.1+git20150715.afe4d34-0tanglu1) staging; urgency=medium
 
   * Packages upstream Git snapshot: 1.1.1+git20150715.afe4d34
     - Should fix RC bug (TT: #122)
-  * Drop all patches: Applied upstream
 
  -- Matthias Klumpp <mak@debian.org>  Wed, 15 Jul 2015 14:02:58 +0200
 
