@@ -1,3 +1,9 @@
+calamares (1.1.4.2-0tanglu1) UNRELEASED; urgency=medium
+
+  * New upstream release: 1.1.4.2
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 22 Oct 2015 15:22:24 +0200
+
 calamares (1.1.2-0tanglu1) staging; urgency=medium
 
   * New upstream bugfix release: 1.1.2
