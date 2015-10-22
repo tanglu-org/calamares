@@ -34,9 +34,7 @@
 #include "fs/fat16.h"
 #include "fs/hfs.h"
 #include "fs/hfsplus.h"
-#ifndef CALAMARES
 #include "fs/luks.h"
-#endif
 
 #include "util/globallog.h"
 #include "util/helpers.h"
@@ -236,6 +234,7 @@ static qint64 readSectorsUsedLibParted(PedDisk* pedDisk, const Partition& p)
 static void readSectorsUsed(PedDisk* pedDisk, const Device& d, Partition& p, const QString& mountPoint)
 {
 	Q_ASSERT(pedDisk);
+    qDebug() << "readSectorsUsed for partition" << p.partitionPath();
 
 	const KDiskFreeSpaceInfo freeSpaceInfo = KDiskFreeSpaceInfo::freeSpaceInfo(mountPoint);
 
@@ -333,6 +332,8 @@ void LibPartedBackend::scanDevicePartitions(PedDevice*, Device& d, PedDisk* pedD
 	Q_ASSERT(pedDisk);
 	Q_ASSERT(d.partitionTable());
 
+    qDebug() << "LibPartedBackend::scanDevicePartitions for" << d.deviceNode();
+
 	PedPartition* pedPartition = NULL;
 
 	KMountPoint::List mountPoints = KMountPoint::currentMountPoints(KMountPoint::NeedRealDeviceName);
@@ -340,6 +341,7 @@ void LibPartedBackend::scanDevicePartitions(PedDevice*, Device& d, PedDisk* pedD
 
 	QList<Partition*> partitions;
 
+    qDebug() << "LibParted iterating over pedPartitions on the pedDisk";
 	while ((pedPartition = ped_disk_next_partition(pedDisk, pedPartition)))
 	{
 		if (pedPartition->num < 1)
@@ -348,6 +350,9 @@ void LibPartedBackend::scanDevicePartitions(PedDevice*, Device& d, PedDisk* pedD
 		PartitionRole::Roles r = PartitionRole::None;
 		FileSystem::Type type = detectFileSystem(pedPartition);
 
+        qDebug() << "pedPartition number:" << pedPartition->num;
+        qDebug() << "pedPartition type:" << pedPartition->type;
+        qDebug() << "Detected file system type" << type << ":" << FileSystem::nameForType(type);
 		switch(pedPartition->type)
 		{
 			case PED_PARTITION_NORMAL:
@@ -377,23 +382,30 @@ void LibPartedBackend::scanDevicePartitions(PedDevice*, Device& d, PedDisk* pedD
 		const QString node = QString::fromUtf8(ped_partition_get_path(pedPartition));
 		FileSystem* fs = FileSystemFactory::create(type, pedPartition->geom.start, pedPartition->geom.end);
 
+        qDebug() << "Partition path:" << node;
+        qDebug() << "FileSystemFactory::create returned"
+                 << (fs ? "a valid FileSystem." : "nullptr!");
+
 		// libparted does not handle LUKS partitions
 		QString mountPoint;
 		bool mounted;
-        #ifndef CALAMARES
 		if (fs->type() == FileSystem::Luks)
 		{
 			mountPoint = FS::luks::mapperName(node);
 			mounted = (mountPoint != QString()) ? true : false;
 		}
 		else
-        #endif
 		{
 			mountPoint = mountPoints.findByDevice(node) ? mountPoints.findByDevice(node)->mountPoint() : QString();
 			mounted = ped_partition_is_busy(pedPartition);
 		}
 
+        qDebug() << "mountPoint:" << mountPoint;
+        qDebug() << "mounted:" << mounted;
+
 		Partition* part = new Partition(parent, d, PartitionRole(r), fs, pedPartition->geom.start, pedPartition->geom.end, node, availableFlags(pedPartition), mountPoint, mounted, activeFlags(pedPartition));
+
+        qDebug() << "Partition object is" << (part ? "not null." : "null.");
 
 		readSectorsUsed(pedDisk, d, *part, mountPoint);
 
@@ -424,6 +436,7 @@ void LibPartedBackend::scanDevicePartitions(PedDevice*, Device& d, PedDisk* pedD
 */
 Device* LibPartedBackend::scanDevice(const QString& device_node)
 {
+    qDebug() << "LibPartedBackend::scanDevice for" << device_node;
 	PedDevice* pedDevice = ped_device_get(device_node.toLocal8Bit().constData());
 
 	if (pedDevice == NULL)

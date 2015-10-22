@@ -62,7 +62,6 @@ kconfig_add_kcfg_files(core_SRCS ${pm_SOURCE_DIR}/config.kcfgc)
 
 set(fs_DIR ${pm_SOURCE_DIR}/fs)
 file(GLOB fs_SRCS ${fs_DIR}/*.cpp)
-list(REMOVE_ITEM fs_SRCS ${fs_DIR}/luks.cpp)
 
 set(backend_DIR ${pm_SOURCE_DIR}/backend)
 set(backend_SRCS
