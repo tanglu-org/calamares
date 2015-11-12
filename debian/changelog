@@ -1,3 +1,11 @@
+calamares (1.1.4.2-0tanglu2) staging; urgency=medium
+
+  * Look for the root filesystem in the right location.
+  * Remove the additional live packages in the postinstall step.
+  * Make icon look less terrible.
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 12 Nov 2015 22:14:56 +0100
+
 calamares (1.1.4.2-0tanglu1) staging; urgency=medium
 
   * New upstream release: 1.1.4.2
