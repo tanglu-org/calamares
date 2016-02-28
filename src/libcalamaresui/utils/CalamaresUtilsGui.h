@@ -44,6 +44,8 @@ enum ImageType : int
     PartitionEraseAuto,
     PartitionManual,
     PartitionReplaceOs,
+    PartitionTable,
+    BootEnvironment,
     Squid
 };
 
@@ -65,6 +67,7 @@ UIDLLEXPORT void clearLayout( QLayout* layout );
 UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();
 UIDLLEXPORT int defaultFontHeight();
+UIDLLEXPORT QFont defaultFont();
 UIDLLEXPORT QSize defaultIconSize();
 
 }

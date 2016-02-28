@@ -21,13 +21,12 @@
 #include "core/ColorUtils.h"
 #include "core/PartitionCoreModule.h"
 #include "core/DeviceModel.h"
-#include "core/PMUtils.h"
-#include "core/device.h"
-#include "core/partition.h"
+#include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "gui/PartitionSplitterWidget.h"
-#include "gui/PartitionPreview.h"
+#include "gui/PartitionBarsView.h"
+#include "gui/PartitionLabelsView.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -35,6 +34,10 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
 #include "Branding.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <QBoxLayout>
 #include <QComboBox>
@@ -62,9 +65,10 @@ AlongsidePage::AlongsidePage( QWidget* parent )
 
     partitionsComboLayout->addStretch();
 
-    m_previewWidget = new PartitionPreview;
-    m_previewWidget->setLabelsVisible( true );
+    m_previewWidget = new PartitionBarsView;
+    m_previewLabels = new PartitionLabelsView;
     mainLayout->addWidget( m_previewWidget );
+    mainLayout->addWidget( m_previewLabels );
 
     QLabel* allocateSpaceLabel = new QLabel();
     mainLayout->addWidget( allocateSpaceLabel );
@@ -100,7 +104,7 @@ AlongsidePage::AlongsidePage( QWidget* parent )
 
 
 void
-AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osproberEntries )
+AlongsidePage::init( PartitionCoreModule* core )
 {
     if ( m_core != core )
         m_core = core;
@@ -125,44 +129,9 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
                                         string( Calamares::Branding::ProductName ) ) );
     } );
 
-    // TODO 2.0: move this to a Utils namespace.
-    // Iterate over devices in devicemodel, foreach device, if it's DOS MBR and limit is
-    // reached and we have an osprober entry inside it, then disable alongside.
-    QStringList pathsOfDevicesWithPrimariesLimitReached;
-    for ( int row = 0; row < m_core->deviceModel()->rowCount(); ++row )
+    foreach ( const OsproberEntry& e, m_core->osproberEntries() )
     {
-        const QModelIndex& deviceIndex = m_core->deviceModel()->index( row );
-
-        Device* dev = m_core->deviceModel()->deviceForIndex( deviceIndex );
-        if ( dev->partitionTable() &&
-             ( dev->partitionTable()->type() == PartitionTable::msdos ||
-               dev->partitionTable()->type() == PartitionTable::msdos_sectorbased ) &&
-             dev->partitionTable()->numPrimaries() == dev->partitionTable()->maxPrimaries() )
-        {
-            // Primaries limit reached!
-            pathsOfDevicesWithPrimariesLimitReached.append( dev->deviceNode() );
-        }
-    }
-    // End MBR primary limit check.
-
-    cDebug() << "Devices with limit reached:" << pathsOfDevicesWithPrimariesLimitReached;
-    cDebug() << "Osprober entries:";
-    foreach ( const OsproberEntry& e, osproberEntries )
-    {
-        cDebug() << "     *" << e.path << e.line;
-        // TODO 2.0: move this to a Utils namespace.
-        bool cantCreatePartitions = false;
-        foreach ( const QString& devicePath, pathsOfDevicesWithPrimariesLimitReached )
-        {
-            if ( e.path.startsWith( devicePath ) )
-            {
-                cantCreatePartitions = true;
-                break;
-            }
-        }
-        // End partition creatable check.
-
-        if ( e.canBeResized && !cantCreatePartitions )
+        if ( e.canBeResized )
             m_partitionsComboBox->addItem( e.prettyName + " (" + e.path + ")", e.path );
     }
     setNextEnabled( true );
@@ -179,7 +148,7 @@ AlongsidePage::onPartitionSelected( int comboBoxIndex )
     for ( int i = 0; i < dm->rowCount(); ++i )
     {
         Device* dev = dm->deviceForIndex( dm->index( i ) );
-        Partition* candidate = PMUtils::findPartitionByPath( { dev }, path );
+        Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, path );
         if ( candidate )
         {
             // store candidate->partitionPath() here!
@@ -194,40 +163,17 @@ AlongsidePage::onPartitionSelected( int comboBoxIndex )
             qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
 
             // set up splitter widget here, then set up the split position
-            QList< PartitionSplitterItem > allPartitionItems;
-            {
-                PartitionSplitterItem* extendedPartitionItem = nullptr;
-                for ( auto it = PartitionIterator::begin( dev );
-                      it != PartitionIterator::end( dev ); ++it )
-                {
-                    PartitionSplitterItem newItem = {
-                        ( *it )->partitionPath(),
-                        ColorUtils::colorForPartition( *it ),
-                        false,
-                        ( *it )->capacity(),
-                        {}
-                    };
-
-                    if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
-                        extendedPartitionItem->children.append( newItem );
-                    else
-                    {
-                        allPartitionItems.append( newItem );
-                        if ( ( *it )->roles().has( PartitionRole::Extended ) )
-                            extendedPartitionItem = &allPartitionItems.last();
-                    }
-                }
-            }
 
             Device* deviceBefore = m_core->createImmutableDeviceCopy( dev );
 
             PartitionModel* partitionModelBefore = new PartitionModel;
-            partitionModelBefore->init( deviceBefore );
+            partitionModelBefore->init( deviceBefore, m_core->osproberEntries() );
             deviceBefore->setParent( partitionModelBefore );
             partitionModelBefore->setParent( m_previewWidget );
 
             m_previewWidget->setModel( partitionModelBefore );
-            m_splitterWidget->init( allPartitionItems );
+            m_previewLabels->setModel( partitionModelBefore );
+            m_splitterWidget->init( dev );
 
             m_splitterWidget->setSplitPartition( candidate->partitionPath(),
                                                  candidate->used() * 1.1,
@@ -313,7 +259,7 @@ AlongsidePage::applyChanges()
     for ( int i = 0; i < dm->rowCount(); ++i )
     {
         Device* dev = dm->deviceForIndex( dm->index( i ) );
-        Partition* candidate = PMUtils::findPartitionByPath( { dev }, path );
+        Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, path );
         if ( candidate )
         {
             qint64 firstSector = candidate->firstSector();
@@ -322,7 +268,7 @@ AlongsidePage::applyChanges()
                                    dev->logicalSectorSize();
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
-            Partition* newPartition = PMUtils::createNewPartition(
+            Partition* newPartition = KPMHelpers::createNewPartition(
                                           candidate->parent(),
                                           *dev,
                                           candidate->roles(),

@@ -33,13 +33,11 @@
 CreateUserJob::CreateUserJob( const QString& userName,
                               const QString& fullName,
                               bool autologin,
-                              const QString& userGroup,
                               const QStringList& defaultGroups )
     : Calamares::Job()
     , m_userName( userName )
     , m_fullName( fullName )
     , m_autologin( autologin )
-    , m_userGroup( userGroup )
     , m_defaultGroups( defaultGroups )
 {
 }
@@ -108,7 +106,8 @@ CreateUserJob::exec()
 
     foreach ( const QString& group, m_defaultGroups )
         if ( !groupsLines.contains( group ) )
-            CalamaresUtils::chrootCall( { "groupadd", group } );
+            CalamaresUtils::System::instance()->
+                    targetEnvCall( { "groupadd", group } );
 
     QString defaultGroups = m_defaultGroups.join( ',' );
     if ( m_autologin )
@@ -120,36 +119,37 @@ CreateUserJob::exec()
         else
             autologinGroup = QStringLiteral( "autologin" );
 
-        CalamaresUtils::chrootCall( { "groupadd", autologinGroup } );
+        CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
         defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
     }
 
-    int ec = CalamaresUtils::chrootCall( { "useradd",
-                                           "-m",
-                                           "-s",
-                                           "/bin/bash",
-                                           "-g",
-                                           "users",
-                                           "-G",
-                                           defaultGroups,
-                                           m_userName } );
+    int ec = CalamaresUtils::System::instance()->
+             targetEnvCall( { "useradd",
+                              "-m",
+                              "-s",
+                              "/bin/bash",
+                              "-U",
+                              "-G",
+                              defaultGroups,
+                              m_userName } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot create user %1." )
                                                 .arg( m_userName ),
                                             tr( "useradd terminated with error code %1." )
                                                 .arg( ec ) );
 
-    ec = CalamaresUtils::chrootCall( { "chfn", "-f", m_fullName, m_userName } );
+    ec = CalamaresUtils::System::instance()->targetEnvCall( { "chfn", "-f", m_fullName, m_userName } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set full name for user %1." )
                                                 .arg( m_userName ),
                                             tr( "chfn terminated with error code %1." )
                                                 .arg( ec ) );
 
-    ec = CalamaresUtils::chrootCall( { "chown",
+    ec = CalamaresUtils::System::instance()->
+                      targetEnvCall( { "chown",
                                        "-R",
                                        QString( "%1:%2" ).arg( m_userName )
-                                                         .arg( m_userGroup ),
+                                                         .arg( m_userName ),
                                        QString( "/home/%1" ).arg( m_userName ) } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set home directory ownership for user %1." )

@@ -28,9 +28,14 @@ def run():
     targets = libcalamares.job.configuration['targets']
     disable = libcalamares.job.configuration['disable']
 
+    # note that the "systemctl enable" and "systemctl disable" commands used
+    # here will work in a chroot; in fact, they are the only systemctl commands
+    # that support that, see:
+    # http://0pointer.de/blog/projects/changing-roots.html
+
     # enable services
     for svc in services:
-        ec = libcalamares.utils.chroot_call(['systemctl', 'enable', '{}.service'.format(svc['name'])])
+        ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.service'.format(svc['name'])])
 
         if ec != 0:
             if svc['mandatory']:
@@ -42,7 +47,7 @@ def run():
 
     # enable targets
     for tgt in targets:
-        ec = libcalamares.utils.chroot_call(['systemctl', 'enable', '{}.target'.format(tgt['name'])])
+        ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.target'.format(tgt['name'])])
 
         if ec != 0:
             if tgt['mandatory']:
@@ -53,7 +58,7 @@ def run():
                 libcalamares.utils.debug("systemctl enable call in chroot returned error code {}".format(ec))
 
     for dbl in disable:
-        ec = libcalamares.utils.chroot_call(['systemctl', 'disable', '{}.service'.format(dbl['name'])])
+        ec = libcalamares.utils.target_env_call(['systemctl', 'disable', '{}.service'.format(dbl['name'])])
 
         if ec != 0:
             if dbl['mandatory']:

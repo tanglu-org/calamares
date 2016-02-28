@@ -1,8 +1,10 @@
 find_package( Qt5 COMPONENTS Test REQUIRED )
 include( ECMAddTests )
 
+set( PartitionModule_SOURCE_DIR .. )
+
 set( partitionjobtests_SRCS
-    ${PartitionModule_SOURCE_DIR}/core/PMUtils.cpp
+    ${PartitionModule_SOURCE_DIR}/core/KPMHelpers.cpp
     ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
     ${PartitionModule_SOURCE_DIR}/core/PartitionIterator.cpp
     ${PartitionModule_SOURCE_DIR}/jobs/CheckFileSystemJob.cpp

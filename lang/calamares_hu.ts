@@ -2,80 +2,34 @@
 <context>
     <name>AlongsidePage</name>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="73"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="77"/>
         <source>Choose partition to shrink:</source>
         <translation>Válaszd ki melyik partíció legyen átméretezve, zsugorítva:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="74"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
         <source>Allocate drive space by dragging the divider below:</source>
         <translation>Az alábbi osztósáv húzásával meghatározhatod a lefoglalandó meghajtó területet:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="117"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
         <translation>Ezzel a művelettel, a &lt;strong&gt;%1&lt;/strong&gt; partíció, ami %4-et tartalmaz, %2MB-ra lesz zsugorítva és egy új %3MB partíció lesz létrehozva %5 számára.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Az EFI rendszerpartíció nem található a rendszerben. Kérlek, lépj vissza és állítsd be manuális partícionálással %1- et.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="227"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>A %2 indításához az EFI rendszer partíciót használja a következőn: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="237"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="218"/>
         <source>EFI system partition:</source>
         <translation>EFI rendszer partíció:</translation>
-    </message>
-</context>
-<context>
-    <name>ApplyProgressDetailsWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="37"/>
-        <source>Save</source>
-        <translation>Mentés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="44"/>
-        <source>Open in External Browser</source>
-        <translation>Megnyitás külső böngészőben</translation>
-    </message>
-</context>
-<context>
-    <name>ApplyProgressDialogWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="33"/>
-        <source>Operations and Jobs</source>
-        <translation>Műveletek és folyamatok</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
-        <source>Time Elapsed</source>
-        <translation>Eltelt idő</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="64"/>
-        <source>Total Time: 00:00:00</source>
-        <translation>Teljes idő: 00:00:00</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="81"/>
-        <source>Operation: %p%</source>
-        <translation>Művelet: %p%</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
-        <source>Status</source>
-        <translation>Állapot</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="107"/>
-        <source>Total: %p%</source>
-        <translation>Összes: %p%</translation>
     </message>
 </context>
 <context>
@@ -184,29 +138,47 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BootInfoWidget</name>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
+        <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
+        <translation>A rendszer &lt;strong&gt;indító környezete.&lt;strong&gt; &lt;br&gt;&lt;br&gt;Régebbi x86 alapú rendszerek csak &lt;strong&gt;BIOS&lt;/strong&gt;&lt;br&gt;-t támogatják. A modern rendszerek gyakran &lt;strong&gt;EFI&lt;/strong&gt;-t használnak, de lehet, hogy BIOS-ként látható ha kompatibilitási módban fut az indító környezet. </translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
+        <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
+        <translation>A rendszer &lt;strong&gt;EFI&lt;/strong&gt; indító környezettel lett indítva.&lt;br&gt;&lt;br&gt;Annak érdekében, hogy az EFI környezetből indíthassunk a telepítőnek telepítenie kell a rendszerbetöltő alkalmazást pl. &lt;strong&gt;GRUB&lt;/strong&gt; vagy &lt;strong&gt;systemd-boot&lt;/strong&gt; az &lt;strong&gt;EFI Rendszer Partíción.&lt;/strong&gt; Ez automatikus kivéve ha kézi partícionálást választottál ahol neked kell kiválasztani vagy létrehozni.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
+        <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
+        <translation>A rendszer &lt;strong&gt;BIOS&lt;/strong&gt; környezetből lett indítva. &lt;br&gt;&lt;br&gt;Azért, hogy el lehessen indítani a rendszert egy BIOS környezetből a telepítőnek telepítenie kell egy indító környezetet mint pl. &lt;strong&gt;GRUB&lt;/strong&gt;. Ez telepíthető a partíció elejére vagy a &lt;strong&gt;Master Boot Record&lt;/strong&gt;-ba. javasolt a partíciós tábla elejére (javasolt). Ez automatikus kivéve ha te kézi partícionálást választottál ahol neked kell telepíteni.</translation>
+    </message>
+</context>
+<context>
     <name>BootLoaderModel</name>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
         <source>Master Boot Record of %1</source>
         <translation>Mester Boot Record - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="75"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
         <source>Boot Partition</source>
         <translation>Indító partíció</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="80"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="81"/>
         <source>System Partition</source>
         <translation>Rendszer Partíció</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="110"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
         <source>Do not install a boot loader</source>
         <translation>Ne telepítsen rendszerbetöltőt</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="124"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
         <source>%1 (%2)</source>
         <translation>%1 (%2)</translation>
     </message>
@@ -240,9 +212,9 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Calamares::InstallationViewStep</name>
+    <name>Calamares::ExecutionViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="71"/>
+        <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
         <translation>Telepít</translation>
     </message>
@@ -268,12 +240,12 @@ p, li { white-space: pre-wrap; }
         <translation>Parancs futtatása %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>External command crashed</source>
         <translation>Külső parancs összeomlott</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
@@ -282,32 +254,32 @@ Kimenet:
 %2</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="94"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="95"/>
         <source>External command failed to start</source>
         <translation>Külső parancsot nem sikerült elindítani</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="95"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="96"/>
         <source>Command %1 failed to start.</source>
         <translation>A parancs %1 -et nem sikerült elindítani.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
         <source>Internal error when starting command</source>
         <translation>Belső hiba parancs végrehajtásakor</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
         <source>Bad parameters for process job call.</source>
         <translation>Hibás paraméterek a folyamat hívásához.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="103"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
         <source>External command failed to finish</source>
         <translation>Külső parancs nem fejeződött be</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="105"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
@@ -316,12 +288,12 @@ Kimenet:
 %3</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="110"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="111"/>
         <source>External command finished with errors</source>
         <translation>Külső parancs hibával fejeződött be</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="111"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="112"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
@@ -366,65 +338,65 @@ Kimenet:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
         <source>&amp;Back</source>
         <translation>&amp;Vissza</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Next</source>
         <translation>&amp;Következő</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="68"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="334"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Mégse</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="93"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
         <source>Cancel installation?</source>
         <translation>Abbahagyod a telepítést?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Biztos abba szeretnéd hagyni a telepítést?
 Minden változtatás elveszik, ha kilépsz a telepítőből.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="256"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
         <source>Continue with setup?</source>
         <translation>Folytatod a telepítéssel?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>A %1 telepítő változtatásokat fog elvégezni, hogy telepítse a következőt: %2.&lt;br/&gt;&lt;strong&gt;A változtatások visszavonhatatlanok lesznek.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
         <translation>&amp;Telepítés most</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Go &amp;back</source>
         <translation>Menj &amp;vissza</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="304"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
         <source>&amp;Quit</source>
         <translation>&amp;Kilépés</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="189"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
         <source>Error</source>
         <translation>Hiba</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="190"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
         <source>Installation Failed</source>
         <translation>Telepítés nem sikerült</translation>
     </message>
@@ -510,88 +482,125 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
 <context>
     <name>ChoicePage</name>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="117"/>
-        <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation>Úgy tűnik, hogy ezen a számítógépen jelenleg nincs másik operációs rendszer. Mit szeretnél tenni?</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.ui" line="14"/>
+        <source>Form</source>
+        <translation>Adatlap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="143"/>
-        <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>Ezen a számítógépen jelenleg %1 van telepítve. Mit szeretnél tenni?</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
+        <source>After:</source>
+        <translation>Utána:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="191"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
-        <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;strong&gt;Lemez törlése és %1 telepítése&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Figyelem:&lt;/font&gt;
-Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja törlődni fog!</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="222"/>
+        <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
+        <translation>&lt;strong&gt;Manuális partícionálás&lt;/strong&gt;&lt;br/&gt;Létrehozhat vagy átméretezhet partíciókat.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="164"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="197"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="246"/>
-        <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation>&lt;strong&gt;Lemez törlése és telepítés %1&lt;/strong&gt;&lt;br/&gt;A törlendő lemez kiválasztható a telepítés előtt.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="767"/>
+        <source>Boot loader location:</source>
+        <translation>Rendszerbetöltő helye:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
-        <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;%2 telepítése a jelenlegi %1 operációs rendszere mellé&lt;/strong&gt;&lt;br/&gt;A telepítő helyet szabadít fel %2 számára. A számítógép indításakor választhat, hogy melyik rendszert szeretné betölteni.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
+        <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
+        <translation>%1 lesz zsugorítva %2MB méretűre és egy új %3MB méretű partíció lesz létrehozva itt %4</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
-        <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;strong&gt;A teljes %1 lemez törlése és %2 telepítése &lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Figyelmeztetés: &lt;/font&gt;A teljes lemez törölve lesz, minden %1 program, dokumentum, fotó, zene és a több fájlok is.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
+        <source>Select storage de&amp;vice:</source>
+        <translation>Válassz tároló eszközt:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="169"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="202"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="251"/>
-        <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;strong&gt;A partíció lecserélése a következővel %1&lt;/strong&gt;&lt;br/&gt;A partíció kiválaszható a telepítés előtt.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="699"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="738"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
+        <source>Current:</source>
+        <translation>Aktuális:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
-        <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation>Ezen a számítógépen már van egy operációs rendszer. Mit szeretne tenni?</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="700"/>
+        <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
+        <translation>&lt;strong&gt;Válaszd ki a partíciót amit zsugorítani akarsz és egérrel méretezd át.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
-        <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;%1 telepítése a jelenlegi operációs rendszere mellé&lt;/strong&gt;&lt;br/&gt;A telepítő helyet szabadít fel %2 számára. A számítógép indításakor választhat, hogy melyik rendszert szeretné betölteni.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="805"/>
+        <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
+        <translation>&lt;strong&gt;Válaszd ki a telepítésre szánt partíciót &lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="227"/>
-        <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation>Ezen a számítógépen jelenleg több operációs rendszer is van. Mit szeretne tenni?</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="860"/>
+        <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
+        <translation>Nem található EFI partíció a rendszeren. Menj vissza a manuális partícionáláshoz és állíts be %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="230"/>
-        <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;%1 telepítése a jelenlegi operációs rendszere mellé&lt;/strong&gt;&lt;br/&gt;A telepítő helyet szabadít fel %2 számára. A számítógép indításakor választhat, hogy melyik rendszert szeretné betölteni.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
+        <source>The EFI system partition at %1 will be used for starting %2.</source>
+        <translation>A %1 EFI rendszer partíció lesz használva %2 indításához.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="278"/>
-        <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;strong&gt;Manuális partícionálás&lt;/strong&gt;&lt;br/&gt;Létrehozhat vagy átméretezhet partíciókat, vagy kiválaszthat több partíciót %1 számára.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
+        <source>EFI system partition:</source>
+        <translation>EFI rendszerpartíció:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="951"/>
+        <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+        <translation>Úgy tűnik ezen a tárolóeszközön nincs operációs rendszer. Mit szeretnél csinálni?&lt;br/&gt;Lehetőséged lesz átnézni és megerősíteni a választásod mielőtt bármilyen változtatás történik a tárolóeszközön.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="986"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1010"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1048"/>
+        <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
+        <translation>&lt;strong&gt;Lemez törlése&lt;/strong&gt;&lt;br/&gt;Ez &lt;font color=&quot;red&quot;&gt;törölni&lt;/font&gt; fogja a lemezen levő összes adatot.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="975"/>
+        <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+        <translation>Ezen a tárolóeszközön %1 található. Mit szeretnél tenni?&lt;br/&gt;Lehetőséged lesz átnézni és megerősíteni a választásod mielőtt bármilyen változtatás történik a tárolóeszközön.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1043"/>
+        <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
+        <translation>&lt;strong&gt;Meglévő mellé telepíteni&lt;/strong&gt;&lt;br/&gt;A telepítő zsugorítani fogja a partíciót, hogy elférjen a %1.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="991"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1052"/>
+        <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
+        <translation>&lt;strong&gt;A partíció lecserélése&lt;/strong&gt; a következővel: %1.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
+        <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+        <translation>Ez a tárolóeszköz már tartalmaz egy operációs rendszert. Mit szeretnél tenni?&lt;br/&gt;Lehetőséged lesz átnézni és megerősíteni a választásod mielőtt bármilyen változtatás történik a tárolóeszközön.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1038"/>
+        <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
+        <translation>A tárolóeszközön több operációs rendszer található. Mit szeretnél tenni?&lt;br/&gt;Lehetőséged lesz átnézni és megerősíteni a választásod mielőtt bármilyen változtatás történik a tárolóeszközön.</translation>
     </message>
 </context>
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="44"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>%1 csatolás törlése partícionáláshoz</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="50"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
         <translation>%1 csatolás törlése partícionáláshoz</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="169"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
         <source>Cleared all mounts for %1</source>
         <translation>%1 minden csatolása törölve</translation>
     </message>
@@ -599,313 +608,24 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
 <context>
     <name>ClearTempMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
         <source>Clear all temporary mounts.</source>
         <translation>Minden ideiglenes csatolás törlése</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="45"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="47"/>
         <source>Clearing all temporary mounts.</source>
         <translation>Minden ideiglenes csatolás törlése</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="56"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
         <source>Cannot get list of temporary mounts.</source>
         <translation>Nem lehet lekérni az ideiglenes csatolási listát</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="95"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
         <source>Cleared all temporary mounts.</source>
         <translation>Minden ideiglenes csatolás törölve</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigurePageAdvanced</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>
-        <source>Permissions</source>
-        <translation>Jogosultságok</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
-        <source>Allow applying operations without administrator privileges</source>
-        <translation>Műveletek végrehajtásának engedélyezése rendszergazdai jogosultságok nélkül</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
-        <source>Backend</source>
-        <translation>Támogatás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="57"/>
-        <source>Active backend:</source>
-        <translation>Aktív támogatás:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="79"/>
-        <source>Units</source>
-        <translation>Egységek</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="85"/>
-        <source>Preferred unit:</source>
-        <translation>Előnyben részesített egység:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="96"/>
-        <source>Byte</source>
-        <translation>Byte</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="101"/>
-        <source>KiB</source>
-        <translation>KiB</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="106"/>
-        <source>MiB</source>
-        <translation>MiB</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="111"/>
-        <source>GiB</source>
-        <translation>GiB</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="116"/>
-        <source>TiB</source>
-        <translation>TiB</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="121"/>
-        <source>PiB</source>
-        <translation>PiB</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="126"/>
-        <source>EiB</source>
-        <translation>EiB</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigurePageFileSystemColors</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="23"/>
-        <source>File Systems</source>
-        <translation>Fájlrendszerek</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
-        <source>luks:</source>
-        <translation>luks:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="45"/>
-        <source>ntfs:</source>
-        <translation>ntfs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="58"/>
-        <source>ext2:</source>
-        <translation>ext2:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="87"/>
-        <source>ext3:</source>
-        <translation>ext3:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="116"/>
-        <source>ext4:</source>
-        <translation>ext4:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="132"/>
-        <source>btrfs:</source>
-        <translation>btrfs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="174"/>
-        <source>linuxswap:</source>
-        <translation>cserehely:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="190"/>
-        <source>fat16:</source>
-        <translation>fat16:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="219"/>
-        <source>fat32:</source>
-        <translation>fat32:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="248"/>
-        <source>zfs:</source>
-        <translation>zfs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="264"/>
-        <source>reiserfs:</source>
-        <translation>reiserfs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="293"/>
-        <source>reiser4:</source>
-        <translation>reiser4:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="322"/>
-        <source>hpfs:</source>
-        <translation>hpfs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="338"/>
-        <source>jfs</source>
-        <translation>jfs</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="367"/>
-        <source>hfs:</source>
-        <translation>hfs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="396"/>
-        <source>hfsplus:</source>
-        <translation>hfsplus:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="412"/>
-        <source>ufs:</source>
-        <translation>ufs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="441"/>
-        <source>xfs:</source>
-        <translation>xfs:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="470"/>
-        <source>ocfs2:</source>
-        <translation>ocfs2:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="489"/>
-        <source>extended:</source>
-        <translation>kiterjesztett:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="518"/>
-        <source>unformatted:</source>
-        <translation>formázatlan:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="547"/>
-        <source>unknown:</source>
-        <translation>ismeretlen:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="570"/>
-        <source>exfat:</source>
-        <translation>exfat:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="583"/>
-        <source>nilfs2:</source>
-        <translation>nilfs2:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="622"/>
-        <source>lvm2 pv:</source>
-        <translation>lvm2 pv:</translation>
-    </message>
-</context>
-<context>
-    <name>ConfigurePageGeneral</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="23"/>
-        <source>Partition Alignment</source>
-        <translation>Partíció Elrendezés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="29"/>
-        <source>Use cylinder based alignment (Windows XP compatible)</source>
-        <translation>Használjon cilinder alapú elrendezést (Windows XP kompatibilis)</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
-        <source>Sector alignment:</source>
-        <translation>Szektor Elrendezés:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
-        <source> sectors</source>
-        <translation>szektorok</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
-        <source>Align partitions per default</source>
-        <translation>Partíciók elrendezése alapértelmezés szerint</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
-        <source>Logging</source>
-        <translation>Naplózás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
-        <source>Hide messages below:</source>
-        <translation>Alábbi üzenetek elrejtése:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
-        <source>Debug</source>
-        <translation>Hibakeresés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
-        <source>Information</source>
-        <translation>Információ</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="117"/>
-        <source>Warning</source>
-        <translation>Figyelmeztetés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="122"/>
-        <source>Error</source>
-        <translation>Hiba</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="139"/>
-        <source>File Systems</source>
-        <translation>Fájlrendszerek</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="145"/>
-        <source>Default file system:</source>
-        <translation>Alapértelmezett fájlrendszer:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="167"/>
-        <source>Shredding</source>
-        <translation>Letörlés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="173"/>
-        <source>Overwrite with:</source>
-        <translation>Felülírás ezzel:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="180"/>
-        <source>Random data</source>
-        <translation>Véletlenszerű adat</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="190"/>
-        <source>Zeros</source>
-        <translation>Nullák</translation>
     </message>
 </context>
 <context>
@@ -1066,87 +786,59 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     </message>
 </context>
 <context>
-    <name>CreatePartitionTableWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="20"/>
-        <source>Choose the type of partition table you want to create:</source>
-        <translation>Válaszd ki a partíciós tábla típusát amit létre akarsz hozni:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="29"/>
-        <source>GPT</source>
-        <translation>GPT</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="39"/>
-        <source>MS-Dos</source>
-        <translation>MS-DOS</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="66"/>
-        <source>(icon)</source>
-        <translation>(icon)</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="79"/>
-        <source>&lt;b&gt;Warning:&lt;/b&gt; This will destroy all data on the device!</source>
-        <translation>&lt;b&gt;Figyelem:&lt;/b&gt; Ez a művelet megsemmisíti az összes adatot ezen az eszközön!</translation>
-    </message>
-</context>
-<context>
     <name>CreateUserJob</name>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="51"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="49"/>
         <source>Create user %1</source>
         <translation>%1 nevű felhasználó létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="58"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="56"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>&lt;strong&gt;%1&lt;/strong&gt; nevű felhasználó létrehozása.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="63"/>
         <source>Creating user %1.</source>
         <translation>%1 nevű felhasználó létrehozása</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
         <source>Sudoers dir is not writable.</source>
         <translation>Sudoers mappa nem írható.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="83"/>
         <source>Cannot create sudoers file for writing.</source>
         <translation>Nem lehet sudoers fájlt létrehozni írásra.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="93"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="91"/>
         <source>Cannot chmod sudoers file.</source>
         <translation>Nem lehet a sudoers fájlt &quot;chmod&quot; -olni.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="97"/>
         <source>Cannot open groups file for reading.</source>
         <translation>Nem lehet a groups fájlt megnyitni olvasásra.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="137"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="136"/>
         <source>Cannot create user %1.</source>
         <translation>Nem lehet a %1 felhasználót létrehozni.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="139"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="138"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd megszakítva %1 hibakóddal.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="144"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
         <source>Cannot set full name for user %1.</source>
         <translation>Nem lehet a teljes nevet beállítani a %1 felhasználónak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="146"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
         <source>chfn terminated with error code %1.</source>
         <translation>chfn megszakítva %1 hibakóddal.</translation>
     </message>
@@ -1159,19 +851,6 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
         <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown megszakítva %1 hibakóddal.</translation>
-    </message>
-</context>
-<context>
-    <name>DecryptLuksDialogWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
-        <source>&amp;Name:</source>
-        <translation>&amp;Név:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
-        <source>&amp;Passphrase:</source>
-        <translation>&amp;Jelszó:</translation>
     </message>
 </context>
 <context>
@@ -1213,74 +892,44 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     </message>
 </context>
 <context>
-    <name>DeviceModel</name>
+    <name>DeviceInfoWidget</name>
     <message>
-        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="79"/>
-        <source>%1 - %2 (%3)</source>
-        <translation>%1 - %2 (%3)</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
+        <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
+        <translation>A &lt;strong&gt;partíciós tábla&lt;/strong&gt; típusa a kiválasztott tárolóeszközön.&lt;br&gt;&lt;br&gt;Az egyetlen lehetőség a partíciós tábla változtatására ha töröljük és újra létrehozzuk a partíciós táblát, ami megsemmisít minden adatot a tárolóeszközön.&lt;br&gt;A telepítő megtartja az aktuális partíciós táblát ha csak másképp nem döntesz.&lt;br&gt;Ha nem vagy benne biztos a legtöbb modern rendszernél GPT az elterjedt.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
+        <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
+        <translation>Az ezköz tartalmaz egy &lt;strong&gt;%1&lt;/strong&gt; partíciós táblát.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
+        <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
+        <translation>A választott tárolóeszköz egy &lt;strong&gt;loop&lt;/strong&gt;  eszköz.&lt;br&gt;&lt;br&gt;Ez nem egy partíciós tábla, ez egy pszeudo eszköz ami lehetővé teszi a hozzáférést egy fájlhoz, úgy mint egy blokk eszköz. Ez gyakran csak egy fájlrendszert tartalmaz.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
+        <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
+        <translation>A telepítő &lt;strong&gt;nem talált partíciós táblát&lt;/strong&gt; a választott tárolóeszközön.&lt;br&gt;&lt;br&gt; Az eszköz nem tartalmaz partíciós táblát vagy sérült vagy  ismeretlen típusú.&lt;br&gt;  A telepítő létre tud hozni újat automatikusan vagy te magad kézi partícionálással.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
+        <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
+        <translation>&lt;br&gt;&lt;br&gt;Ez az ajánlott partíciós tábla típus modern rendszerekhez ami &lt;strong&gt;EFI&lt;/strong&gt;  indító környezettel indul.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
+        <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
+        <translation>&lt;br&gt;&lt;br&gt;Ez a partíciós tábla típus régebbi rendszerekhez javasolt amik &lt;strong&gt;BIOS&lt;/strong&gt; indító környezetből indulnak. Legtöbb esetben azonban GPT használata javasolt. &lt;br&gt;&lt;strong&gt;Figyelem:&lt;/strong&gt; az MSDOS partíciós tábla egy régi sztenderd lényeges korlátozásokkal. &lt;br&gt;Maximum 4 &lt;em&gt;elsődleges&lt;/em&gt; partíció hozható létre és abból a 4-ből egy lehet &lt;em&gt;kiterjesztett&lt;/em&gt; partíció.</translation>
     </message>
 </context>
 <context>
-    <name>DevicePropsWidgetBase</name>
+    <name>DeviceModel</name>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="58"/>
-        <source>Partition table:</source>
-        <translation>Partíciós tábla:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="77"/>
-        <source>Cylinder alignment</source>
-        <translation>Cilinder Elrendezés:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="84"/>
-        <source>Sector based alignment</source>
-        <translation>Szektor alapú elrendezés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="113"/>
-        <source>Capacity:</source>
-        <translation>Kapacitás:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="130"/>
-        <source>Total sectors:</source>
-        <translation>Szektorok száma összesen:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="160"/>
-        <source>Cylinders/Heads/Sectors:</source>
-        <translation>Cilinderek/Fejek/Szektorok:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="183"/>
-        <source>Logical sector size:</source>
-        <translation>Logikai szektor méret:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="200"/>
-        <source>Physical sector size:</source>
-        <translation>Fizikai szektor méret:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="217"/>
-        <source>Cylinder size:</source>
-        <translation>Cilinderek száma:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="241"/>
-        <source>Primaries/Max:</source>
-        <translation>Elsődleges/Max.:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="265"/>
-        <source>SMART status:</source>
-        <translation>SMART állapot:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="303"/>
-        <source>More...</source>
-        <translation>Több...</translation>
+        <location filename="../src/modules/partition/core/DeviceModel.cpp" line="80"/>
+        <source>%1 - %2 (%3)</source>
+        <translation>%1 - %2 (%3)</translation>
     </message>
 </context>
 <context>
@@ -1324,216 +973,6 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
         <source>Fi&amp;le System:</source>
         <translation>&amp;fájlrendszer</translation>
-    </message>
-</context>
-<context>
-    <name>EditMountOptionsDialogWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountoptionsdialogwidgetbase.ui" line="14"/>
-        <source>Edit Mount Options</source>
-        <translation>Csatolási opciók szerkesztése</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountoptionsdialogwidgetbase.ui" line="20"/>
-        <source>Edit the mount options for this file system:</source>
-        <translation>Csatolási opciók szerkesztése ehhez a fájlrendszerhez:</translation>
-    </message>
-</context>
-<context>
-    <name>EditMountPointDialogWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="17"/>
-        <source>Path:</source>
-        <translation>Útvonal:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="46"/>
-        <source>Select...</source>
-        <translation>Kiválaszt...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="53"/>
-        <source>Type:</source>
-        <translation>Típus:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="63"/>
-        <source>Options:</source>
-        <translation>Opciók:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="73"/>
-        <source>Read-only</source>
-        <translation>Csak olvasható</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="80"/>
-        <source>Users can mount and unmount</source>
-        <translation>Felhasználók tudnak csatolni és lecsatolni</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="87"/>
-        <source>No automatic mount</source>
-        <translation>Nincs automatikus csatolás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="94"/>
-        <source>No update of file access times</source>
-        <translation>Nem frissíti a fájl hozzáférési időket</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="101"/>
-        <source>Synchronous access</source>
-        <translation>Szinkronizált hozzáférés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="108"/>
-        <source>No update of directory access times</source>
-        <translation>Nem frissíti a könyvtár hozzáférési időket</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="115"/>
-        <source>No binary execution</source>
-        <translation>Nincs bináris végrehajtás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="122"/>
-        <source>Update access times relative to modification</source>
-        <translation>Frissítse a hozzáférési időket a módosításokhoz képest</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="142"/>
-        <source>More...</source>
-        <translation>Több...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="149"/>
-        <source>Dump Frequency:</source>
-        <translation>Kiürítés gyakorisága:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="178"/>
-        <source>Pass Number:</source>
-        <translation>Szám átadás:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="285"/>
-        <source>Device Node</source>
-        <translation>Eszköz Node</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="295"/>
-        <source>UUID</source>
-        <translation>UUID</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="302"/>
-        <source>Label</source>
-        <translation>Címke</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="309"/>
-        <source>Identify by:</source>
-        <translation>Azonosítás ezzel:</translation>
-    </message>
-</context>
-<context>
-    <name>EraseDiskPage</name>
-    <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="54"/>
-        <source>Select drive:</source>
-        <translation>Válassz meghajtót:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="264"/>
-        <source>Before:</source>
-        <translation>Előtte:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="270"/>
-        <source>After:</source>
-        <translation>Utána:</translation>
-    </message>
-</context>
-<context>
-    <name>FileSystemSupportDialogWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="17"/>
-        <source>This table shows which file systems are supported and which specific operations can be performed on them.
-Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
-        <translation>Ez a táblázat megmutatja milyen fájlrendszerek támogatottak és milyen speciális műveletek hajthatók végre rajtuk.
-Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és támogatáshoz. De nem minden művelet hajtható végre minden egyes fájlrendszeren, akkor sem ha szükséges eszközök telepítve vannak. Kérlek olvasd el a dokumentációt részletekért.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
-        <source>File System</source>
-        <translation>Fájlrendszer</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="70"/>
-        <source>Create</source>
-        <translation>Létrehozás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="75"/>
-        <source>Grow</source>
-        <translation>Növesztés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="80"/>
-        <source>Shrink</source>
-        <translation>Kicsinyítés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="85"/>
-        <source>Move</source>
-        <translation>Áthelyezés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="90"/>
-        <source>Copy</source>
-        <translation>Másolás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="95"/>
-        <source>Check</source>
-        <translation>Ellenőrzés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="100"/>
-        <source>Read Label</source>
-        <translation>Olvasási címke</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="105"/>
-        <source>Write Label</source>
-        <translation>Írási címke</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="110"/>
-        <source>Read Usage</source>
-        <translation>Olvasási használat</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="115"/>
-        <source>Backup</source>
-        <translation>Mentés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="120"/>
-        <source>Restore</source>
-        <translation>Visszaállítás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="125"/>
-        <source>Support Tools</source>
-        <translation>Eszköztámogatás</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="135"/>
-        <source>Rescan Support</source>
-        <comment>@action:button</comment>
-        <translation>Támogatás újraszkennelése</translation>
     </message>
 </context>
 <context>
@@ -1596,8 +1035,8 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     <name>FinishedViewStep</name>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
-        <source>All done</source>
-        <translation>Sikeres művelet</translation>
+        <source>Finish</source>
+        <translation>Befejezés</translation>
     </message>
 </context>
 <context>
@@ -1644,6 +1083,36 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     </message>
 </context>
 <context>
+    <name>InteractiveTerminalPage</name>
+    <message>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="69"/>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="84"/>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="96"/>
+        <source>Konsole not installed</source>
+        <translation>Konsole nincs telepítve</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="70"/>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
+        <source>Please install the kde konsole and try again!</source>
+        <translation>Telepítsd a KDE konzolt és próbáld újra!</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
+        <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
+        <translation>Script végrehajása: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>InteractiveTerminalViewStep</name>
+    <message>
+        <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
+        <source>Script</source>
+        <translation>Szkript</translation>
+    </message>
+</context>
+<context>
     <name>KeyboardPage</name>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="201"/>
@@ -1659,7 +1128,7 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
 <context>
     <name>KeyboardViewStep</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="48"/>
+        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="49"/>
         <source>Keyboard</source>
         <translation>Billentyűzet</translation>
     </message>
@@ -1675,6 +1144,84 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>A nyelvi beállítás kihat a nyelvi és karakter beállításokra a parancssori elemeknél.&lt;br/&gt;A jelenlegi beállítás &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+</context>
+<context>
+    <name>LicensePage</name>
+    <message>
+        <location filename="../src/modules/license/LicensePage.ui" line="14"/>
+        <source>Form</source>
+        <translation>Adatlap</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
+        <source>I accept the terms and conditions above.</source>
+        <translation>Elfogadom a fentebbi felhasználási feltételeket.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
+        <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
+        <translation>&lt;h1&gt;Licensz&lt;/h1&gt;A telepítő szabadalmaztatott szoftvert fog telepíteni. Információ a licenszben.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
+        <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
+        <translation>Kérlek, olvasd el a fenti végfelhasználói licenszfeltételeket (EULAs)&lt;br/&gt;Ha nem értesz egyet a feltételekkel, akkor a telepítés nem folytatódik.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
+        <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
+        <translation>&lt;h1&gt;Licensz&lt;/h1&gt;A telepítő szabadalmaztatott szoftvert fog telepíteni. Információ a licenszben.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
+        <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
+        <translation>Kérlek, olvasd el a fenti végfelhasználói licenszfeltételeket (EULAs)&lt;br/&gt;Ha nem értesz egyet a feltételekkel, akkor a szabadalmaztatott program telepítése nem folytatódik és nyílt forrású program lesz telepítve helyette.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
+        <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
+        <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
+        <translation>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt; %2 -ból/ -ből</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
+        <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
+        <translation>&lt;strong&gt;%1 grafikus driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;%2 -ból/ -ből&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="171"/>
+        <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1 böngésző plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;%2 -ból/ -ből&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="177"/>
+        <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1 kodek&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;%2 -ból/ -ből&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="183"/>
+        <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1 csomag&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot; &gt;%2 -ból/ -ből&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="189"/>
+        <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;%2 -ból/ -ből&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="201"/>
+        <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
+        <translation>&lt;a href=&quot;%1&quot;&gt;a licensz elolvasása&lt;/a&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>LicenseViewStep</name>
+    <message>
+        <location filename="../src/modules/license/LicenseViewStep.cpp" line="51"/>
+        <source>License</source>
+        <translation>Licensz</translation>
     </message>
 </context>
 <context>
@@ -1709,47 +1256,14 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="45"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
         <source>Loading location data...</source>
         <translation>Hely adatok betöltése...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="79"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
         <source>Location</source>
         <translation>Hely</translation>
-    </message>
-</context>
-<context>
-    <name>MainWindowBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="14"/>
-        <source>KDE Partition Manager</source>
-        <comment>@title:window</comment>
-        <translation>KDE Partíció Kezelő</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="24"/>
-        <source>Devices</source>
-        <comment>@title:window</comment>
-        <translation>Eszközök</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="38"/>
-        <source>Pending Operations</source>
-        <comment>@title:window</comment>
-        <translation>Várakozó Műveletek</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="49"/>
-        <source>Information</source>
-        <comment>@title:window</comment>
-        <translation>Információ</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="63"/>
-        <source>Log Output</source>
-        <comment>@title:window</comment>
-        <translation>Kimenet naplózása</translation>
     </message>
 </context>
 <context>
@@ -1827,260 +1341,138 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
         <translation>Adatlap</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
         <translation>Mi a neved?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
         <translation>Milyen felhasználónévvel szeretnél bejelentkezni?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="319"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
         <translation>betű-súly: normál</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Ha több mint egy személy használja a számítógépet akkor létrehozhatsz több felhasználói fiókot a telepítés után.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Adj meg jelszót a felhasználói fiókod védelmére.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Írd be a jelszót kétszer így ellenőrizve lesznek a gépelési hibák. A jó jelszó tartalmazzon kis és nagy betűket, számokat és legalább 8 karakter hosszúságú. Ajánlott megváltoztatni rendszeres időközönként.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
         <translation>Mi legyen a számítógép neve?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Ez a név lesz használva ha a számítógép látható a hálózaton.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <source>Log in automatically without asking for the password.</source>
+        <translation>Jelszó megkérdezése nélküli automatikus bejelentkezés.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <source>Use the same password for the administrator account.</source>
+        <translation>Ugyanaz a jelszó használata az adminisztrátor felhasználóhoz.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Adj meg jelszót az adminisztrátor felhasználói fiókhoz.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Írd be a jelszót kétszer így ellenőrizve lesznek a gépelési hibák.&lt;/small&gt;</translation>
     </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>&amp;Log in automatically</source>
-        <translation>Automatikus bejelentkezés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require &amp;my password to log in</source>
-        <translation>A jelszavam kérése bejelentkezéskor</translation>
-    </message>
 </context>
 <context>
-    <name>PartPropsWidgetBase</name>
+    <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="49"/>
-        <source>File system:</source>
-        <comment>@label:listbox</comment>
-        <translation>Fájlrendszer:</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
+        <source>Root</source>
+        <translation>Root</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="65"/>
-        <source>Label:</source>
-        <comment>@label</comment>
-        <translation>Címke:</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
+        <source>Home</source>
+        <translation>Home</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="82"/>
-        <source>This file system does not support setting a label.</source>
-        <comment>@label</comment>
-        <translation>Ez a fájlrendszer nem támogatja a címkéket.</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
+        <source>Boot</source>
+        <translation>Boot</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="92"/>
-        <source>Recreate existing file system</source>
-        <comment>@action:button</comment>
-        <translation>Meglévő fájlrendszer újra lérehozása</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
+        <source>EFI system</source>
+        <translation>EFI rendszer</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="106"/>
-        <source>Mount point:</source>
-        <comment>@label</comment>
-        <translation>Csatolási pont:</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
+        <source>Swap</source>
+        <translation>Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="123"/>
-        <source>Partition type:</source>
-        <comment>@label</comment>
-        <translation>Partíció típus:</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
+        <source>New partition for %1</source>
+        <translation>Új partíció %1 -ra/ -re</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="140"/>
-        <source>Status:</source>
-        <comment>@label</comment>
-        <translation>Állapot:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="157"/>
-        <source>UUID:</source>
-        <comment>@label</comment>
-        <translation>UUID:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="187"/>
-        <source>Size:</source>
-        <comment>@label</comment>
-        <translation>Méret:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="210"/>
-        <source>Available:</source>
-        <comment>@label partition capacity available</comment>
-        <translation>Elérhető:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="227"/>
-        <source>Used:</source>
-        <comment>@label partition capacity used</comment>
-        <translation>Használatban:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="251"/>
-        <source>First sector:</source>
-        <comment>@label</comment>
-        <translation>Első szektor:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="268"/>
-        <source>Last sector:</source>
-        <comment>@label</comment>
-        <translation>Utolsó szektor:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="285"/>
-        <source>Number of sectors:</source>
-        <comment>@label</comment>
-        <translation>Szektorok száma:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="309"/>
-        <source>Flags:</source>
-        <comment>@label</comment>
-        <translation>Zászlók:</translation>
-    </message>
-</context>
-<context>
-    <name>PartitionManagerWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="14"/>
-        <source>KDE Partition Manager</source>
-        <comment>@title:window</comment>
-        <translation>KDE Partíció Kezelő</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="70"/>
-        <source>Partition</source>
-        <translation>Partíció</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="75"/>
-        <source>Type</source>
-        <translation>Típus</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="80"/>
-        <source>Mount Point</source>
-        <translation>Csatolási pont</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="85"/>
-        <source>Label</source>
-        <translation>Címke</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="90"/>
-        <source>UUID</source>
-        <translation>UUID</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="95"/>
-        <source>Size</source>
-        <translation>Méret</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="100"/>
-        <source>Used</source>
-        <translation>Használatban</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="105"/>
-        <source>Available</source>
-        <translation>Elérhető</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="110"/>
-        <source>First Sector</source>
-        <translation>Első szektor</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="115"/>
-        <source>Last Sector</source>
-        <translation>Utolsó szektor</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="120"/>
-        <source>Number of Sectors</source>
-        <translation>Szektorok száma</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="125"/>
-        <source>Flags</source>
-        <translation>Zászlók</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="219"/>
+        <source>%1  %2</source>
+        <translation>%1  %2</translation>
     </message>
 </context>
 <context>
     <name>PartitionModel</name>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="135"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="137"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="169"/>
         <source>Free Space</source>
         <translation>Szabad terület</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="139"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="141"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="173"/>
         <source>New partition</source>
         <translation>Új partíció</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="178"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="242"/>
         <source>Name</source>
         <translation>Név</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="180"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="244"/>
         <source>File System</source>
         <translation>Fájlrendszer</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="182"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="246"/>
         <source>Mount Point</source>
         <translation>Csatolási pont</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="184"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="248"/>
         <source>Size</source>
         <translation>Méret</translation>
     </message>
@@ -2094,8 +1486,8 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
-        <source>&amp;Disk:</source>
-        <translation>&amp;Lemez:</translation>
+        <source>Storage de&amp;vice:</source>
+        <translation>Eszköz:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -2124,11 +1516,11 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
-        <source>&amp;Install boot loader on:</source>
+        <source>Install boot &amp;loader on:</source>
         <translation>&amp;Rendszerbetöltő telepítése ide:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Biztos vagy benne, hogy létrehozol egy új partíciós táblát itt %1 ?</translation>
     </message>
@@ -2136,82 +1528,69 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="67"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="65"/>
         <source>Gathering system information...</source>
         <translation>Rendszerinformációk gyűjtése...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="104"/>
         <source>Partitions</source>
         <translation>Partíciók</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="208"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="141"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation>%1 telepítése más operációs rendszer &lt;strong&gt;mellé&lt;/strong&gt; .</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="213"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="146"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation>&lt;strong&gt;Lemez törlés&lt;/strong&gt;és %1 telepítés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="151"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation>&lt;strong&gt;A partíció lecserélése&lt;/strong&gt; a következővel: %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="223"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="156"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
         <translation>&lt;strong&gt;Kézi&lt;/strong&gt; partícionálás.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="236"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="169"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>%1 telepítése más operációs rendszer &lt;strong&gt;mellé&lt;/strong&gt; a &lt;strong&gt;%2&lt;/strong&gt; (%3) lemezen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="243"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation>&lt;strong&gt;%2 lemez törlése&lt;/strong&gt; (%3) és %1 telepítés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="250"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation>&lt;strong&gt;A partíció lecserélése&lt;/strong&gt; a &lt;strong&gt;%2&lt;/strong&gt; lemezen(%3) a következővel: %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="257"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
         <translation>&lt;strong&gt;Kézi&lt;/strong&gt; telepítés a &lt;strong&gt;%1&lt;/strong&gt; (%2) lemezen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="265"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="198"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation>Lemez &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="277"/>
-        <source>Before:</source>
-        <translation>Előtte:</translation>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
+        <source>Current:</source>
+        <translation>Aktuális:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="283"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="242"/>
         <source>After:</source>
         <translation>Utána:</translation>
-    </message>
-</context>
-<context>
-    <name>ProgressTreeModel</name>
-    <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="143"/>
-        <source>Install</source>
-        <translation>Telepít</translation>
-    </message>
-    <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="153"/>
-        <source>Finish</source>
-        <translation>Befejezve</translation>
     </message>
 </context>
 <context>
@@ -2227,201 +1606,98 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
         <source>Default</source>
         <translation>Alapértelmezett</translation>
     </message>
-</context>
-<context>
-    <name>ReleaseDialog</name>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="20"/>
-        <source>KDE Release Builder</source>
-        <translation>KDE Kiadás Építő</translation>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="150"/>
+        <source>unknown</source>
+        <translation>ismeretlen</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="32"/>
-        <source>Application</source>
-        <translation>Alkalmazás</translation>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="152"/>
+        <source>extended</source>
+        <translation>kiterjesztett</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="38"/>
-        <source>Name:</source>
-        <translation>Név:</translation>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
+        <source>unformatted</source>
+        <translation>formázatlan</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="48"/>
-        <source>&amp;Version:</source>
-        <translation>&amp;Verzió:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="93"/>
-        <source>Repository and Revision</source>
-        <translation>Gyűjtemény és Felülvizsgálat</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="99"/>
-        <source>&amp;Checkout From:</source>
-        <translation>&amp;Ellenőrző adatlap:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="119"/>
-        <source>trunk</source>
-        <translation>törzs</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="124"/>
-        <source>branches</source>
-        <translation>ágak</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="129"/>
-        <source>tags</source>
-        <translation>címke</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="137"/>
-        <source>Ta&amp;g/Branch:</source>
-        <translation>Cí&amp;mke/Ág:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="163"/>
-        <source>&amp;SVN Access:</source>
-        <translation>&amp;SVN Hozzáférés:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="183"/>
-        <source>anonsvn</source>
-        <translation>anonsvn</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="188"/>
-        <source>https</source>
-        <translation>https</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="193"/>
-        <source>svn+ssh</source>
-        <translation>svn+ssh</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="201"/>
-        <source>&amp;User:</source>
-        <translation>&amp;Felhasználó:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="236"/>
-        <source>Options</source>
-        <translation>Opciók</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="242"/>
-        <source>Get &amp;Documentation</source>
-        <translation>Dokumentáció beszerzése</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="252"/>
-        <source>Get &amp;Translations</source>
-        <translation>Fordítások beszerzése</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="262"/>
-        <source>C&amp;reate Tag</source>
-        <translation>Címke létrehozása</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="271"/>
-        <source>S&amp;kip translations below completion:</source>
-        <translation>Fordítás kihagyása befejezés előtt:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="306"/>
-        <source> %</source>
-        <translation>%</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="324"/>
-        <source>Create Tar&amp;ball</source>
-        <translation>Tarball létrehozása</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="334"/>
-        <source>Apply &amp;fixes</source>
-        <translation>Javítások alkalmazása</translation>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
+        <source>Unpartitioned space or unknown partition table</source>
+        <translation>Nem particionált, vagy ismeretlen partíció</translation>
     </message>
 </context>
 <context>
-    <name>ReplacePage</name>
+    <name>ReplaceWidget</name>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.ui" line="14"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="14"/>
         <source>Form</source>
         <translation>Adatlap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
-        <source>Dis&amp;k:</source>
-        <translation>Lemezek&amp;:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="160"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>Válaszd ki az telepítés helyét %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Figyelmeztetés: &lt;/font&gt;minden fájl törölve lesz a kiválasztott partíción.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="187"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>A kiválasztott elem nem tűnik érvényes partíciónak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>%1 nem telepíthető, kérlek válassz egy létező partíciót.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 nem telepíthető a kiterjesztett partícióra. Kérlek, válassz egy létező elsődleges vagy logikai partíciót.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>Nem lehet telepíteni a következőt %1 erre a partícióra.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="224"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
         <source>Data partition (%1)</source>
         <translation>Adat partíció (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="241"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
         <translation>Ismeretlen rendszer partíció (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="246"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 rendszer partíció (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="257"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
         <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;A partíció %1 túl kicsi a következőhöz %2. Kérlek, válassz egy legalább %3 GB- os partíciót.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="281"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Az EFI rendszerpartíció nem található a rendszerben. Kérlek, lépj vissza és állítsd be manuális partícionálással %1- et.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="293"/>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="312"/>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="337"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="286"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="311"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 installálva lesz a következőre: %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Figyelmeztetés: &lt;/font&gt;a partíción %2 minden törölve lesz.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="303"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>A %2 indításához az EFI rendszer partíciót használja a következőn: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="321"/>
+        <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>
         <source>EFI system partition:</source>
         <translation>EFI rendszer partíció:</translation>
     </message>
@@ -2527,6 +1803,19 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     </message>
 </context>
 <context>
+    <name>ScanningDialog</name>
+    <message>
+        <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
+        <source>Scanning storage devices...</source>
+        <translation>Eszközök keresése...</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
+        <source>Partitioning</source>
+        <translation>Partícionálás</translation>
+    </message>
+</context>
+<context>
     <name>SetHostNameJob</name>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
@@ -2616,12 +1905,12 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
         <translation>rootMountPoint is %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="69"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="74"/>
         <source>Cannot set password for user %1.</source>
         <translation>Nem lehet a %1 felhasználó jelszavát beállítani.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="76"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod megszakítva %1 hibakóddal.</translation>
     </message>
@@ -2629,230 +1918,45 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
 <context>
     <name>SetTimezoneJob</name>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="41"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="43"/>
         <source>Set timezone to %1/%2</source>
         <translation>Időzóna beállítása %1/%2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="56"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
         <source>Cannot access selected timezone path.</source>
         <translation>A választott időzóna útvonal nem hozzáférhető.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="57"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
         <source>Bad path: %1</source>
         <translation>Rossz elérési út: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="69"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone.</source>
         <translation>Nem lehet az időzónát beállítani.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="70"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Link creation failed, target: %1; link name: %2</source>
         <translation>Link létrehozása nem sikerült: %1, link év: %2</translation>
     </message>
-</context>
-<context>
-    <name>SizeDetailsWidgetBase</name>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedetailswidgetbase.ui" line="62"/>
-        <source>First sector:</source>
-        <comment>@label:listbox</comment>
-        <translation>Első szektor:</translation>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
+        <source>Cannot set timezone,</source>
+        <translation>Nem lehet beállítani az időzónát .</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedetailswidgetbase.ui" line="97"/>
-        <source>Last sector:</source>
-        <comment>@label:listbox</comment>
-        <translation>Utolsó szektor:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedetailswidgetbase.ui" line="120"/>
-        <source>Align partition</source>
-        <translation>Partíció igazítása</translation>
-    </message>
-</context>
-<context>
-    <name>SizeDialogWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="55"/>
-        <source>Partition type:</source>
-        <comment>@label:listbox</comment>
-        <translation>Partíció típus:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="70"/>
-        <source>Primary</source>
-        <translation>Elsődleges</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="77"/>
-        <source>Extended</source>
-        <translation>Kiterjesztett</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="84"/>
-        <source>Logical</source>
-        <translation>Logikai</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="99"/>
-        <source>File system:</source>
-        <comment>@label:listbox</comment>
-        <translation>Fájlrendszer:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="115"/>
-        <source>Label:</source>
-        <comment>@label</comment>
-        <translation>Címke:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="134"/>
-        <source>This file system does not support setting a label.</source>
-        <comment>@label</comment>
-        <translation>Ez a fájlrendszer nem támogatja a címkéket.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="152"/>
-        <source>Minimum size:</source>
-        <comment>@label</comment>
-        <translation>Minimum méret:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="175"/>
-        <source>Maximum size:</source>
-        <comment>@label</comment>
-        <translation>Maximum méret:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="198"/>
-        <source>Free space before:</source>
-        <comment>@label:listbox</comment>
-        <translation>Szabad terület előtte:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="233"/>
-        <source>Size:</source>
-        <comment>@label:listbox</comment>
-        <translation>Méret:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="262"/>
-        <source>Free space after:</source>
-        <comment>@label:listbox</comment>
-        <translation>Szabad terület utána:</translation>
-    </message>
-</context>
-<context>
-    <name>SmartDialogWidgetBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="23"/>
-        <source>SMART status:</source>
-        <translation>SMART állapot:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="63"/>
-        <source>Model:</source>
-        <translation>Modell:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="92"/>
-        <source>Serial number:</source>
-        <translation>Széria szám:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="121"/>
-        <source>Firmware revision:</source>
-        <translation>Firmware:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="150"/>
-        <source>Temperature:</source>
-        <translation>Hőmérséklet:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="179"/>
-        <source>Bad sectors:</source>
-        <translation>Rossz szektorok:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="208"/>
-        <source>Powered on for:</source>
-        <translation>Bekapcsolva:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="237"/>
-        <source>Power cycles:</source>
-        <translation>Bekapcsolási ciklusok:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="289"/>
-        <source>Id</source>
-        <translation>Id</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="294"/>
-        <source>Attribute</source>
-        <translation>Attribútum</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="299"/>
-        <source>Failure Type</source>
-        <translation>Hiba típus</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="304"/>
-        <source>Update Type</source>
-        <translation>Frissítési típus</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="309"/>
-        <source>Worst</source>
-        <translation>Rosszabb</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="314"/>
-        <source>Current</source>
-        <translation>Aktuális</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="319"/>
-        <source>Threshold</source>
-        <translation>Küszöbérték</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="324"/>
-        <source>Raw</source>
-        <translation>Nyers</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="329"/>
-        <source>Assessment</source>
-        <translation>Felmérés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="334"/>
-        <source>Value</source>
-        <translation>Érték</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="385"/>
-        <source>Overall assessment:</source>
-        <translation>Áttekintő felmérés:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
-        <source>Self tests:</source>
-        <translation>Önteszt:</translation>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <source>Cannot open /etc/timezone for writing</source>
+        <translation>Nem lehet megnyitni írásra: /etc/timezone</translation>
     </message>
 </context>
 <context>
     <name>SummaryPage</name>
     <message>
-        <location filename="../src/modules/summary/SummaryPage.cpp" line="42"/>
+        <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
         <translation>Ez áttekintése annak, hogy mi fog történni, ha megkezded a telepítést.</translation>
     </message>
@@ -2860,67 +1964,41 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
 <context>
     <name>SummaryViewStep</name>
     <message>
-        <location filename="../src/modules/summary/SummaryViewStep.cpp" line="41"/>
+        <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
         <source>Summary</source>
         <translation>Összefoglalás</translation>
     </message>
 </context>
 <context>
-    <name>TreeLogBase</name>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="54"/>
-        <source>Sev.</source>
-        <comment>@title:column Severity of a log entry / log level. Text must be very short.</comment>
-        <translation>Sev.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="57"/>
-        <source>Severity</source>
-        <translation>Súlyosság</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="62"/>
-        <source>Time</source>
-        <comment>@title:column a time stamp of a log entry</comment>
-        <translation>Idő</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="67"/>
-        <source>Message</source>
-        <comment>@title:column the text message of a log entry</comment>
-        <translation>Üzenet</translation>
-    </message>
-</context>
-<context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="268"/>
         <source>Your username is too long.</source>
         <translation>A felhasználónév túl hosszú.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="278"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>A felhasználónév érvénytelen karaktereket tartalmaz. Csak kis kezdőbetűk és számok érvényesek.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="322"/>
         <source>Your hostname is too short.</source>
         <translation>A hálózati név túl rövid.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
         <source>Your hostname is too long.</source>
         <translation>A hálózati név túl hosszú.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="344"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>A hálózati név érvénytelen karaktereket tartalmaz. Csak betűk, számok és kötőjel érvényes.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="375"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="408"/>
         <source>Your passwords do not match!</source>
         <translation>A két jelszó nem egyezik!</translation>
     </message>
@@ -2928,7 +2006,7 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
 <context>
     <name>UsersViewStep</name>
     <message>
-        <location filename="../src/modules/users/UsersViewStep.cpp" line="46"/>
+        <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
         <source>Users</source>
         <translation>Felhasználók</translation>
     </message>
@@ -2989,7 +2067,7 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
         <source>Welcome</source>
         <translation>Üdvözlet</translation>
     </message>

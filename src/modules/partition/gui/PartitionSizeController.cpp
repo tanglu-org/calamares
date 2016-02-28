@@ -16,17 +16,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gui/PartitionSizeController.h>
+#include "gui/PartitionSizeController.h"
 
-#include <core/ColorUtils.h>
-#include <core/PMUtils.h>
+#include "core/ColorUtils.h"
+#include "core/KPMHelpers.h"
 
 // Qt
 #include <QSpinBox>
 
-// CalaPM
-#include <core/device.h>
-#include <gui/partresizerwidget.h>
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/gui/partresizerwidget.h>
 
 // stdc++
 #include <limits>
@@ -45,7 +45,7 @@ PartitionSizeController::init( Device* device, Partition* partition, const QColo
     // because it means we would have to revert them if the user cancel the
     // dialog the widget is in. Therefore we init PartResizerWidget with a clone
     // of the original partition.
-    m_partition.reset( PMUtils::clonePartition( m_device, partition ) );
+    m_partition.reset( KPMHelpers::clonePartition( m_device, partition ) );
     m_partitionColor = color;
 }
 

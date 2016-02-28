@@ -38,28 +38,32 @@ public:
                        QObject* parent = nullptr );
 
     static Settings* instance();
-    //TODO: load from JSON then emit ready
+    //TODO: load from YAML then emit ready
 
     QStringList modulesSearchPaths() const;
 
-    QStringList modules( Phase phase ) const;
+    QList< QMap< QString, QString > > customModuleInstances() const;
+
+    QList< QPair< ModuleAction, QStringList > > modulesSequence() const;
 
     QString brandingComponentName() const;
 
-    bool showPromptBeforeInstall() const;
+    bool showPromptBeforeExecution() const;
 
     bool debugMode() const;
+
+    bool doChroot() const;
 
 private:
     static Settings* s_instance;
 
     bool m_debug;
+    bool m_doChroot;
 
     QStringList m_modulesSearchPaths;
 
-    QStringList m_modulesPrepareList;
-    QStringList m_modulesInstallList;
-    QStringList m_modulesPostInstallList;
+    QList< QMap< QString, QString > > m_customModuleInstances;
+    QList< QPair< ModuleAction, QStringList > > m_modulesSequence;
 
     QString m_brandingComponentName;
 

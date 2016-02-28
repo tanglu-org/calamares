@@ -40,7 +40,7 @@ FinishedViewStep::~FinishedViewStep()
 QString
 FinishedViewStep::prettyName() const
 {
-    return tr( "All done" );
+    return tr( "Finish" );
 }
 
 
@@ -113,10 +113,9 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         bool restartNowEnabled = configurationMap.value( "restartNowEnabled" ).toBool();
 
+        m_widget->setRestartNowEnabled( restartNowEnabled );
         if ( restartNowEnabled )
         {
-            m_widget->setRestartNowEnabled( restartNowEnabled );
-
             if ( configurationMap.contains( "restartNowChecked" ) &&
                  configurationMap.value( "restartNowChecked" ).type() == QVariant::Bool &&
                  configurationMap.contains( "restartNowCommand" ) &&
@@ -129,3 +128,4 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 }
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin<FinishedViewStep>(); )

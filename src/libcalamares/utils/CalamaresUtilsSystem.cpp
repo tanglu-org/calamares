@@ -29,8 +29,32 @@
 namespace CalamaresUtils
 {
 
+System* System::s_instance = nullptr;
+
+
+System::System( bool doChroot, QObject* parent )
+    : QObject( parent )
+    , m_doChroot( doChroot )
+{
+    Q_ASSERT( !s_instance );
+    s_instance = this;
+    if ( !doChroot )
+        Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
+}
+
+
+System::~System()
+{}
+
+
+System*System::instance()
+{
+    return s_instance;
+}
+
+
 int
-mount( const QString& devicePath,
+System::mount( const QString& devicePath,
        const QString& mountPoint,
        const QString& filesystemName,
        const QString& options )
@@ -59,13 +83,13 @@ mount( const QString& devicePath,
 }
 
 int
-chrootCall( const QStringList& args,
+System::targetEnvCall( const QStringList& args,
             const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
 {
     QString discard;
-    return chrootOutput( args,
+    return targetEnvOutput( args,
                          discard,
                          workingPath,
                          stdInput,
@@ -74,12 +98,12 @@ chrootCall( const QStringList& args,
 
 
 int
-chrootCall( const QString& command,
+System::targetEnvCall( const QString& command,
             const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
 {
-    return chrootCall( QStringList{ command },
+    return targetEnvCall( QStringList{ command },
                        workingPath,
                        stdInput,
                        timeoutSec );
@@ -87,7 +111,7 @@ chrootCall( const QString& command,
 
 
 int
-chrootOutput( const QStringList& args,
+System::targetEnvOutput( const QStringList& args,
               QString& output,
               const QString& workingPath,
               const QString& stdInput,
@@ -99,24 +123,36 @@ chrootOutput( const QStringList& args,
         return -3;
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( !gs || !gs->contains( "rootMountPoint" ) )
+    if ( !gs ||
+         ( m_doChroot && !gs->contains( "rootMountPoint" ) ) )
     {
         cLog() << "No rootMountPoint in global storage";
         return -3;
     }
 
-    QString destDir = gs->value( "rootMountPoint" ).toString();
-    if ( !QDir( destDir ).exists() )
+    QProcess process;
+    QString program;
+    QStringList arguments;
+
+    if ( m_doChroot )
     {
-        cLog() << "rootMountPoint points to a dir which does not exist";
-        return -3;
+        QString destDir = gs->value( "rootMountPoint" ).toString();
+        if ( !QDir( destDir ).exists() )
+        {
+            cLog() << "rootMountPoint points to a dir which does not exist";
+            return -3;
+        }
+
+        program = "chroot";
+        arguments = QStringList( { destDir } );
+        arguments << args;
+    }
+    else
+    {
+        program = "env";
+        arguments << args;
     }
 
-    QString program( "chroot" );
-    QStringList arguments = { destDir };
-    arguments << args;
-
-    QProcess process;
     process.setProgram( program );
     process.setArguments( arguments );
     process.setProcessChannelMode( QProcess::MergedChannels );
@@ -165,13 +201,13 @@ chrootOutput( const QStringList& args,
 
 
 int
-chrootOutput( const QString& command,
+System::targetEnvOutput( const QString& command,
               QString& output,
               const QString& workingPath,
               const QString& stdInput,
               int timeoutSec )
 {
-    return chrootOutput( QStringList{ command },
+    return targetEnvOutput( QStringList{ command },
                          output,
                          workingPath,
                          stdInput,
@@ -180,7 +216,7 @@ chrootOutput( const QString& command,
 
 
 qint64
-getPhysicalMemoryB()
+System::getPhysicalMemoryB()
 {
         QProcess p;
         p.start( "dmidecode", { "-t", "17" } );
@@ -207,7 +243,7 @@ getPhysicalMemoryB()
 
 
 qint64
-getTotalMemoryB()
+System::getTotalMemoryB()
 {
     // A line in meminfo looks like this, with {print $2} we grab the second column.
     // MemTotal:        8133432 kB
