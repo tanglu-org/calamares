@@ -7,5 +7,4 @@ debian/config/unpackfs.conf /etc/calamares/modules/
 debian/config/users.conf /etc/calamares/modules/
 usr/bin/*
 usr/lib/calamares/*
-usr/lib/libcalapm.so
 usr/share/*
