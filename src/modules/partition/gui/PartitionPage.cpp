@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,22 +20,26 @@
 #include "PartitionPage.h"
 
 // Local
-#include <core/BootLoaderModel.h>
-#include <core/DeviceModel.h>
-#include <core/PartitionCoreModule.h>
-#include <core/PartitionModel.h>
-#include <core/PMUtils.h>
-#include <gui/CreatePartitionDialog.h>
-#include <gui/EditExistingPartitionDialog.h>
+#include "core/BootLoaderModel.h"
+#include "core/DeviceModel.h"
+#include "core/PartitionCoreModule.h"
+#include "core/PartitionModel.h"
+#include "core/KPMHelpers.h"
+#include "gui/CreatePartitionDialog.h"
+#include "gui/EditExistingPartitionDialog.h"
+#include "gui/ScanningDialog.h"
 
-#include <ui_PartitionPage.h>
-#include <ui_CreatePartitionTableDialog.h>
-
-// CalaPM
-#include <core/device.h>
-#include <core/partition.h>
+#include "ui_PartitionPage.h"
+#include "ui_CreatePartitionTableDialog.h"
 
 #include "utils/Retranslator.h"
+#include "Branding.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 // Qt
 #include <QDebug>
@@ -43,6 +48,8 @@
 #include <QMessageBox>
 #include <QPointer>
 #include <QDir>
+#include <QFutureWatcher>
+#include <QtConcurrent/QtConcurrent>
 
 PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     : QWidget( parent )
@@ -52,6 +59,11 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     m_ui->setupUi( this );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->bootLoaderComboBox->setModel( m_core->bootLoaderModel() );
+    PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
+                                                   value( "drawNestedPartitions" ).toBool() ?
+                                                       PartitionBarsView::DrawNestedPartitions :
+                                                       PartitionBarsView::NoNestedPartitions;
+    m_ui->partitionBarsView->setNestedPartitionsMode( mode );
     updateButtons();
     updateBootLoaderInstallPath();
 
@@ -102,7 +114,7 @@ PartitionPage::updateButtons()
         Q_ASSERT( model );
         Partition* partition = model->partitionForIndex( index );
         Q_ASSERT( partition );
-        bool isFree = PMUtils::isPartitionFreeSpace( partition );
+        bool isFree = KPMHelpers::isPartitionFreeSpace( partition );
         bool isExtended = partition->roles().has( PartitionRole::Extended );
 
         create = isFree;
@@ -169,7 +181,7 @@ PartitionPage::onEditClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    if ( PMUtils::isPartitionNew( partition ) )
+    if ( KPMHelpers::isPartitionNew( partition ) )
         updatePartitionToCreate( model->device(), partition );
     else
         editExistingPartition( model->device(), partition );
@@ -188,13 +200,22 @@ PartitionPage::onDeleteClicked()
     m_core->deletePartition( model->device(), partition );
 }
 
+
 void
 PartitionPage::onRevertClicked()
 {
-    int oldIndex = m_ui->deviceComboBox->currentIndex();
-    m_core->revert();
-    m_ui->deviceComboBox->setCurrentIndex( oldIndex );
-    updateFromCurrentDevice();
+    ScanningDialog::run(
+        QtConcurrent::run( [ this ]
+        {
+            QMutexLocker locker( &m_revertMutex );
+
+            int oldIndex = m_ui->deviceComboBox->currentIndex();
+            m_core->revertAllDevices();
+            m_ui->deviceComboBox->setCurrentIndex( oldIndex );
+            updateFromCurrentDevice();
+        } ),
+        []{},
+        this );
 }
 
 void
@@ -214,7 +235,7 @@ PartitionPage::onPartitionViewActivated()
     // but I don't expect there will be other occurences of triggering the same
     // action from multiple UI elements in this page, so it does not feel worth
     // the price.
-    if ( PMUtils::isPartitionFreeSpace( partition ) )
+    if ( KPMHelpers::isPartitionFreeSpace( partition ) )
         m_ui->createButton->click();
     else
         m_ui->editButton->click();
@@ -266,9 +287,29 @@ PartitionPage::updateFromCurrentDevice()
         disconnect( oldModel, 0, this, 0 );
 
     PartitionModel* model = m_core->partitionModelForDevice( device );
-    m_ui->partitionPreview->setModel( model );
+    m_ui->partitionBarsView->setModel( model );
     m_ui->partitionTreeView->setModel( model );
     m_ui->partitionTreeView->expandAll();
+
+    // Make both views use the same selection model.
+    if ( m_ui->partitionBarsView->selectionModel() !=
+         m_ui->partitionTreeView->selectionModel() )
+    {
+        QItemSelectionModel* selectionModel = m_ui->partitionTreeView->selectionModel();
+        m_ui->partitionTreeView->setSelectionModel( m_ui->partitionBarsView->selectionModel() );
+        selectionModel->deleteLater();
+    }
+
+    // This is necessary because even with the same selection model it might happen that
+    // a !=0 column is selected in the tree view, which for some reason doesn't trigger a
+    // timely repaint in the bars view.
+    connect( m_ui->partitionBarsView->selectionModel(), &QItemSelectionModel::currentChanged,
+             this, [=]
+    {
+        QModelIndex selectedIndex = m_ui->partitionBarsView->selectionModel()->currentIndex();
+        selectedIndex = selectedIndex.sibling( selectedIndex.row(), 0 );
+        m_ui->partitionBarsView->setCurrentIndex( selectedIndex );
+    }, Qt::UniqueConnection );
 
     // Must be done here because we need to have a model set to define
     // individual column resize mode

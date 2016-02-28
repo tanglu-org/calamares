@@ -1,18 +1,16 @@
-project( PartitionModule )
-
-if( WITH_PARTITIONMANAGER )
-
-add_subdirectory( partitionmanager/calamares )
-
-## ECM
+# ECM used for something in the tests  directory
 find_package(ECM 0.0.13 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
-include(KDEInstallDirs)
-include(GenerateExportHeader)
 
+# KF5::CoreAddons seems to be used for *something* in this module, not sure what
+include(KDEInstallDirs)       # this seems to be necessary for KF5::CoreAddons
+include(GenerateExportHeader) # this too, because KDE frameworks always want omnomnom more stuff
 find_package( KF5 REQUIRED CoreAddons )
 
-add_definitions( -DCALAMARES )
+# These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
+find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
+
+find_package( KPMcore 2.0 REQUIRED )
 
 add_subdirectory( tests )
 
@@ -25,23 +23,27 @@ calamares_add_plugin( partition
         core/BootLoaderModel.cpp
         core/ColorUtils.cpp
         core/DeviceModel.cpp
+        core/KPMHelpers.cpp
+        core/PartitionActions.cpp
         core/PartitionCoreModule.cpp
         core/PartitionInfo.cpp
         core/PartitionIterator.cpp
         core/PartitionModel.cpp
-        core/PMUtils.cpp
+        core/PartUtils.cpp
         gui/ChoicePage.cpp
         gui/CreatePartitionDialog.cpp
         gui/EditExistingPartitionDialog.cpp
-        gui/AlongsidePage.cpp
-        gui/EraseDiskPage.cpp
+        gui/BootInfoWidget.cpp
+        gui/DeviceInfoWidget.cpp
         gui/PartitionPage.cpp
-        gui/PartitionPreview.cpp
+        gui/PartitionBarsView.cpp
+        gui/PartitionLabelsView.cpp
         gui/PartitionSizeController.cpp
         gui/PartitionSplitterWidget.cpp
         gui/PartitionViewStep.cpp
         gui/PrettyRadioButton.cpp
-        gui/ReplacePage.cpp
+        gui/ScanningDialog.cpp
+        gui/ReplaceWidget.cpp
         jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
         jobs/ClearTempMountsJob.cpp
@@ -54,16 +56,15 @@ calamares_add_plugin( partition
         jobs/PartitionJob.cpp
         jobs/ResizePartitionJob.cpp
     UI
+        gui/ChoicePage.ui
         gui/CreatePartitionDialog.ui
         gui/CreatePartitionTableDialog.ui
         gui/EditExistingPartitionDialog.ui
         gui/PartitionPage.ui
-        gui/ReplacePage.ui
+        gui/ReplaceWidget.ui
     LINK_LIBRARIES
-        calapm
+        kpmcore
         calamaresui
         KF5::CoreAddons
     SHARED_LIB
 )
-
-endif( WITH_PARTITIONMANAGER )

@@ -39,21 +39,21 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA            *
  ***************************************************************************/
 
-#include <jobs/ResizePartitionJob.h>
+#include "jobs/ResizePartitionJob.h"
 
-#include <jobs/CheckFileSystemJob.h>
-#include <jobs/MoveFileSystemJob.h>
-#include <utils/Logger.h>
+#include "jobs/CheckFileSystemJob.h"
+#include "jobs/MoveFileSystemJob.h"
+#include "utils/Logger.h"
 
-// CalaPM
-#include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
-#include <backend/corebackenddevice.h>
-#include <backend/corebackendpartition.h>
-#include <backend/corebackendpartitiontable.h>
-#include <core/device.h>
-#include <core/partition.h>
-#include <util/report.h>
+// KPMcore
+#include <kpmcore/backend/corebackend.h>
+#include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/backend/corebackenddevice.h>
+#include <kpmcore/backend/corebackendpartition.h>
+#include <kpmcore/backend/corebackendpartitiontable.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/util/report.h>
 
 // Qt
 #include <QScopedPointer>
@@ -194,7 +194,7 @@ ResizePartitionJob::prettyDescription() const
     return tr( "Resize <strong>%2MB</strong> partition <strong>%1</strong> to "
                "<strong>%3MB</strong>." )
             .arg( partition()->partitionPath() )
-            .arg( partition()->capacity() / 1024 / 1024 )
+            .arg( ( m_oldLastSector - m_oldFirstSector ) * partition()->sectorSize() / 1024 / 1024 )
             .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
 }
 
@@ -205,7 +205,7 @@ ResizePartitionJob::prettyStatusMessage() const
     return tr( "Resizing %2MB partition %1 to "
                "%3MB." )
             .arg( partition()->partitionPath() )
-            .arg( partition()->capacity() / 1024 / 1024 )
+            .arg( ( m_oldLastSector - m_oldFirstSector ) * partition()->sectorSize() / 1024 / 1024 )
             .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
 }
 
