@@ -1,3 +1,9 @@
+calamares (2.0-0tanglu1) staging; urgency=medium
+
+  * New upstream release: 2.0
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 28 Feb 2016 10:40:56 +0100
+
 calamares (1.1.4.2-0tanglu2) staging; urgency=medium
 
   * Look for the root filesystem in the right location.
