@@ -1,10 +1,12 @@
 [Desktop Entry]
+Type=Application
+Version=1.0
 Name=Install Tanglu
 GenericName=Tanglu Live Installer
 Comment=Install the operating system to disk
 TryExec=calamares
-Exec=calamares-pkexec
+Exec=pkexec /usr/bin/calamares
 Icon=live-installer
-Terminal=False
-Type=Application
+Terminal=false
+StartupNotify=false
 Categories=System;
