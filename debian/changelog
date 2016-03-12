@@ -1,3 +1,10 @@
+calamares (2.0-0tanglu2) staging; urgency=medium
+
+  * Drop installer pkexec helper
+  * Update settings
+
+ -- Matthias Klumpp <mak@debian.org>  Sat, 12 Mar 2016 18:46:42 +0100
+
 calamares (2.0-0tanglu1) staging; urgency=medium
 
   * New upstream release: 2.0
