@@ -71,6 +71,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_choice( NoChoice )
     , m_nextEnabled( false )
     , m_core( nullptr )
+    , m_grp( nullptr )
     , m_alongsideButton( nullptr )
     , m_eraseButton( nullptr )
     , m_replaceButton( nullptr )
@@ -444,6 +445,11 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
         return;
 
     Partition* part = modl->partitionForIndex( current );
+    if ( !part )
+    {
+        cDebug() << Q_FUNC_INFO << "Partition not found for index" << current;
+        return;
+    }
 
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
@@ -572,15 +578,50 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
         {
             m_core->revertDevice( selectedDevice() );
         }
-        // We can't use the PartitionPtrRole because we need to make changes to the
-        // main DeviceModel, not the immutable copy.
-        QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
-        Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
-                                                                partPath );
-        if ( partition )
-            PartitionActions::doReplacePartition( m_core,
-                                                  selectedDevice(),
-                                                  partition );
+
+        // if the partition is unallocated(free space), we don't replace it but create new one 
+        // with the same first and last sector
+        Partition* selectedPartition = (Partition *)( current.data( PartitionModel::PartitionPtrRole ).value< void* >() );
+        if ( KPMHelpers::isPartitionFreeSpace( selectedPartition ) )
+        {
+            PartitionRole newRoles = PartitionRole( PartitionRole::Primary );
+            PartitionNode* newParent = selectedDevice()->partitionTable();
+
+            if ( selectedPartition->parent() )
+            {
+                Partition* parent = dynamic_cast< Partition* >( selectedPartition->parent() );
+                if ( parent && parent->roles().has( PartitionRole::Extended ) )
+                {
+                    newRoles = PartitionRole( PartitionRole::Logical );
+                    newParent = KPMHelpers::findPartitionByPath( { selectedDevice() }, parent->partitionPath() );
+                }
+            }
+
+            Partition* newPartition = KPMHelpers::createNewPartition(
+                    newParent,
+                    *selectedDevice(),
+                    newRoles,
+                    FileSystem::Ext4,
+                    selectedPartition->firstSector(),
+                    selectedPartition->lastSector() );
+
+            PartitionInfo::setMountPoint( newPartition, "/" );
+            PartitionInfo::setFormat( newPartition, true );
+
+            m_core->createPartition( selectedDevice(), newPartition);
+        }
+        else
+        {
+            // We can't use the PartitionPtrRole because we need to make changes to the
+            // main DeviceModel, not the immutable copy.
+            QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
+            selectedPartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+                                                                    partPath );
+            if ( selectedPartition )
+                PartitionActions::doReplacePartition( m_core,
+                                                      selectedDevice(),
+                                                      selectedPartition );
+        }
     } ),
     [=]
     {
@@ -945,6 +986,19 @@ ChoicePage::setupActions()
         }
     }
 
+    bool atLeastOneCanBeReplaced = false;
+
+    for ( auto it = PartitionIterator::begin( currentDevice );
+          it != PartitionIterator::end( currentDevice ); ++it )
+    {
+        if ( PartUtils::canBeReplaced( *it ) )
+        {
+            atLeastOneCanBeReplaced = true;
+            break;
+        }
+    }
+
+
     if ( osproberEntriesForCurrentDevice.count() == 0 )
     {
         CALAMARES_RETRANSLATE(
@@ -956,6 +1010,16 @@ ChoicePage::setupActions()
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all data "
                                         "currently present on the selected storage device." ) );
+
+            m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
+                                            "The installer will shrink a partition to make room for %1." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortVersionedName ) ) );
+
+            m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
+                                          "Replaces a partition with %1." )
+                                      .arg( Calamares::Branding::instance()->
+                                            string( Calamares::Branding::ShortVersionedName ) ) );
         )
 
         m_replaceButton->hide();
@@ -1066,6 +1130,26 @@ ChoicePage::setupActions()
             m_alongsideButton->buttonWidget()->setChecked( false );
             m_grp->setExclusive( true );
         }
+    }
+
+    if ( atLeastOneCanBeReplaced )
+        m_replaceButton->show();
+    else
+    {
+        m_replaceButton->hide();
+        m_grp->setExclusive( false );
+        m_replaceButton->buttonWidget()->setChecked( false );
+        m_grp->setExclusive( true );
+    }
+
+    if ( atLeastOneCanBeResized )
+        m_alongsideButton->show();
+    else
+    {
+        m_alongsideButton->hide();
+        m_grp->setExclusive( false );
+        m_alongsideButton->buttonWidget()->setChecked( false );
+        m_grp->setExclusive( true );
     }
 
     bool isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();

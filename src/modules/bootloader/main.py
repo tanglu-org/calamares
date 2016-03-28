@@ -176,7 +176,16 @@ def install_grub(efi_directory, fw_type):
             distribution = branding["bootloaderEntryName"]
             file_name_sanitizer = str.maketrans(" /", "_-")
             efi_bootloader_id = distribution.translate(file_name_sanitizer)
-        check_target_env_call([libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi",
+        # get bitness of the underlying UEFI
+        try:
+            f = open("/sys/firmware/efi/fw_platform_size", "r")
+            efi_bitness = f.read(2)
+        except:
+            # if the kernel is older than 4.0, the UEFI bitness likely isn't exposed to the userspace
+            # so we assume a 64 bit UEFI here
+            efi_bitness = "64"
+        bitness_translate = {"32": "--target=i386-efi", "64": "--target=x86_64-efi"}
+        check_target_env_call([libcalamares.job.configuration["grubInstall"], bitness_translate[efi_bitness],
                            "--efi-directory={!s}".format(efi_directory),
                            "--bootloader-id={!s}".format(efi_bootloader_id),
                            "--force"])
@@ -216,13 +225,18 @@ def prepare_bootloader(fw_type):
                 device = boot_device[:-1]
 
                 if not boot_p or not device:
-                    return ("EFI directory \"{!s}\" not found!",
-                            "Boot partition: \"{!s}\"",
-                            "Boot device: \"{!s}\"".format(efi_directory, boot_p, device))
+                    return ("EFI directory \"{!s}\" not found!".format(efi_directory),
+                            "Boot partition: \"{!s}\"".format(boot_p),
+                            "Boot device: \"{!s}\"".format(device))
                 else:
                     print("EFI directory: \"{!s}\"".format(efi_directory))
                     print("Boot partition: \"{!s}\"".format(boot_p))
                     print("Boot device: \"{!s}\"".format(device))
+
+        if not device:
+            print("WARNING: no EFI system partition or EFI system partition mount point not set.")
+            print("         >>> no EFI bootloader will be installed <<<")
+            return None
         print("Set 'EF00' flag")
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
 
