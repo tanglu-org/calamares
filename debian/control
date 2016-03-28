@@ -2,6 +2,8 @@ Source: calamares
 Section: admin
 Priority: optional
 Maintainer: Tanglu Developers <tanglu-devel-discuss@lists.tanglu.org>
+Uploaders: 
+	Jörn Schönyan <joern.schoenyan@web.de>
 Build-Depends: cmake,
                debhelper (>= 9),
                extra-cmake-modules,

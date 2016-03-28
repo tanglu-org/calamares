@@ -1,3 +1,11 @@
+calamares (2.2-0tanglu1) staging; urgency=medium
+
+  * New upstream release: 2.1
+  * New upstream release: 2.2
+  * Add myself to uploaders
+
+ -- Jörn Schönyan <joern.schoenyan@web.de>  Mon, 28 Mar 2016 12:29:39 +0200
+
 calamares (2.0-0tanglu2) staging; urgency=medium
 
   * Drop installer pkexec helper
