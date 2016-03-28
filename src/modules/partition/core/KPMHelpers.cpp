@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014,      Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -83,6 +83,9 @@ findPartitionByMountPoint( const QList< Device* >& devices, const QString& mount
 Partition*
 findPartitionByPath( const QList< Device* >& devices, const QString& path )
 {
+    if ( path.simplified().isEmpty() )
+        return nullptr;
+
     for ( auto device : devices )
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
             if ( ( *it )->partitionPath() == path.simplified() )
@@ -105,7 +108,13 @@ findPartitions( const QList< Device* >& devices,
 
 
 Partition*
-createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector )
+createNewPartition( PartitionNode* parent,
+                    const Device& device,
+                    const PartitionRole& role,
+                    FileSystem::Type fsType,
+                    qint64 firstSector,
+                    qint64 lastSector,
+                    PartitionTable::Flags flags )
 {
     FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector );
     return new Partition(
@@ -117,7 +126,7 @@ createNewPartition( PartitionNode* parent, const Device& device, const Partition
                PartitionTable::FlagNone /* availableFlags */,
                QString() /* mountPoint */,
                false /* mounted */,
-               PartitionTable::FlagNone /* activeFlags */,
+               flags /* activeFlags */,
                Partition::StateNew
            );
 }
@@ -131,13 +140,14 @@ clonePartition( Device* device, Partition* partition )
                          partition->firstSector(),
                          partition->lastSector()
                      );
-    return new Partition(
-               partition->parent(),
-               *device,
-               partition->roles(),
-               fs, fs->firstSector(), fs->lastSector(),
-               partition->partitionPath()
-                );
+    return new Partition( partition->parent(),
+                          *device,
+                          partition->roles(),
+                          fs,
+                          fs->firstSector(),
+                          fs->lastSector(),
+                          partition->partitionPath(),
+                          partition->activeFlags() );
 }
 
 
