@@ -1,3 +1,16 @@
+calamares (2.2-0tanglu1) staging; urgency=medium
+
+  [ Matthias Klumpp ]
+
+  * New upstream release: 2.2
+  * Add gbp.conf
+
+  [Jörn Schönyan]
+
+  * Add minimum version for build dependency libkpmcore-dev (>= 2.1)
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 31 Mar 2016 17:18:16 +0200
+
 calamares (2.0-0tanglu2) staging; urgency=medium
 
   * Drop installer pkexec helper
