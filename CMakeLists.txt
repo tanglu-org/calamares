@@ -52,7 +52,7 @@ include( MacroLogFeature )
 set( QT_VERSION 5.4.0 )
 
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
-find_package( YamlCpp 0.5.1 REQUIRED )
+find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules support." ON )
@@ -101,7 +101,7 @@ set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX 
 
 set( CALAMARES_VERSION_MAJOR 2 )
 set( CALAMARES_VERSION_MINOR 2 )
-set( CALAMARES_VERSION_PATCH 0 )
+set( CALAMARES_VERSION_PATCH 2 )
 set( CALAMARES_VERSION_RC 0 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
