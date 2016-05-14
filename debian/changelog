@@ -1,3 +1,9 @@
+calamares (2.2.2-0tanglu1) staging; urgency=medium
+
+  * New upstream release: 2.2.2
+
+ -- Matthias Klumpp <mak@debian.org>  Sat, 14 May 2016 15:46:04 +0200
+
 calamares (2.2-0tanglu1) staging; urgency=medium
 
   [ Matthias Klumpp ]
