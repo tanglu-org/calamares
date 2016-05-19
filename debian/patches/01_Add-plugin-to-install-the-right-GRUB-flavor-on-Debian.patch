@@ -1,0 +1,125 @@
+From 66e5f8fb8e55c2dedbc604c06388f303a390b207 Mon Sep 17 00:00:00 2001
+From: Matthias Klumpp <matthias@tenstral.net>
+Date: Thu, 19 May 2016 21:41:16 +0200
+Subject: [PATCH] Add plugin to install the right GRUB flavor on Debian systems
+
+This will make supporting EFI and PCBIOS with one ISO image possible for
+Tanglu, and will also be of help for other distributions.
+---
+ src/modules/aptgrubinstall/main.py     | 91 ++++++++++++++++++++++++++++++++++
+ src/modules/aptgrubinstall/module.desc |  5 ++
+ 2 files changed, 96 insertions(+)
+ create mode 100644 src/modules/aptgrubinstall/main.py
+ create mode 100644 src/modules/aptgrubinstall/module.desc
+
+diff --git a/src/modules/aptgrubinstall/main.py b/src/modules/aptgrubinstall/main.py
+new file mode 100644
+index 0000000..e7183cd
+--- /dev/null
++++ b/src/modules/aptgrubinstall/main.py
+@@ -0,0 +1,91 @@
++#!/usr/bin/env python3
++# -*- coding: utf-8 -*-
++#
++# === This file is part of Calamares - <http://github.com/calamares> ===
++#
++#   Copyright 2016, Matthias Klumpp <mak@debian.org>
++#
++#   Calamares is free software: you can redistribute it and/or modify
++#   it under the terms of the GNU General Public License as published by
++#   the Free Software Foundation, either version 3 of the License, or
++#   (at your option) any later version.
++#
++#   Calamares is distributed in the hope that it will be useful,
++#   but WITHOUT ANY WARRANTY; without even the implied warranty of
++#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++#   GNU General Public License for more details.
++#
++#   You should have received a copy of the GNU General Public License
++#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
++
++import libcalamares
++
++import os
++import subprocess
++
++from libcalamares.utils import target_env_call, check_target_env_call
++
++
++def target_apt_install(pkgs):
++    """ Installs a list of packages using APT.
++
++    :param pkgs:
++    """
++
++    cmd = ["sh", "-c", "DEBIAN_FRONTEND=noninteractive apt-get -q -y install {}".format(" ".join(pkgs))]
++    check_target_env_call(cmd)
++
++
++def install_bootloader_package(fw_type):
++    """ Uses APT to install the right bootloader package from the live-boot image.
++
++    :param fw_type:
++    :return:
++    """
++    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
++
++    # mount live medium
++    live_medium_path = "/tmp/live-medium"
++    check_target_env_call(["mkdir", "-p", live_medium_path])
++    check_target_env_call(["mount", "/dev/cdrom", live_medium_path])
++
++    # write the repository snippet.
++    # the suite "stable" is usually symlinked to the actual suite name, e.g. "dasyatis" in Tanglu.
++    # this saves us from the pain of finding out the current default suite name or making it an additional setting.
++    repo_snippet = os.path.join(root_mount_point, "etc", "apt", "sources.list.d", "tmp_live-medium.list")
++    f = open(repo_snippet, 'w')
++    f.write("deb [trusted=yes] file://{repo} {suite} main".format(repo=live_medium_path, suite='stable'))
++    f.close()
++
++    # update the APT cache
++    check_target_env_call(["apt-get", "update"])
++
++    if fw_type == "efi":
++        efi_boot_loader = libcalamares.job.configuration["efiBootLoader"]
++        if efi_boot_loader == "systemd-boot":
++            #target_apt_install(["systemd-boot"])
++            # NOTE: systemd-boot doesn't exist in Debian yet
++            pass
++        else:
++            target_apt_install(["grub-efi"])
++    else:
++        target_apt_install(["grub-pc"])
++
++    # cleanup
++    os.remove(repo_snippet)
++    check_target_env_call(["umount", live_medium_path])
++    target_env_call(["rmdir", live_medium_path])
++    target_env_call(["apt-get", "update"])
++
++def run():
++    """ Starts procedure and passes 'fw_type' to other routine.
++
++    :return:
++    """
++    if libcalamares.globalstorage.value("bootLoader") is None:
++        return None
++
++    fw_type = libcalamares.globalstorage.value("firmwareType")
++    install_bootloader_package(fw_type)
++
++    return None
+diff --git a/src/modules/aptgrubinstall/module.desc b/src/modules/aptgrubinstall/module.desc
+new file mode 100644
+index 0000000..371c921
+--- /dev/null
++++ b/src/modules/aptgrubinstall/module.desc
+@@ -0,0 +1,5 @@
++---
++type:       "job"
++name:       "aptgrubinstall"
++interface:  "python"
++script:     "main.py"
+-- 
+2.7.4
+
