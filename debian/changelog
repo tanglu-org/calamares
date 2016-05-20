@@ -1,3 +1,9 @@
+calamares (2.2.2-0tanglu3) staging; urgency=medium
+
+  * Don't fail if efiBootLoader setting is not set.
+
+ -- Matthias Klumpp <mak@debian.org>  Sat, 21 May 2016 08:38:50 +0200
+
 calamares (2.2.2-0tanglu2) staging; urgency=medium
 
   * Add plugin to install the right GRUB flavor on the target system
