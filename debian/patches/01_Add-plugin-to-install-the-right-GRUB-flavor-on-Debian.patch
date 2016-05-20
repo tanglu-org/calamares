@@ -12,9 +12,6 @@ Tanglu, and will also be of help for other distributions.
  create mode 100644 src/modules/aptgrubinstall/main.py
  create mode 100644 src/modules/aptgrubinstall/module.desc
 
-diff --git a/src/modules/aptgrubinstall/main.py b/src/modules/aptgrubinstall/main.py
-new file mode 100644
-index 0000000..e7183cd
 --- /dev/null
 +++ b/src/modules/aptgrubinstall/main.py
 @@ -0,0 +1,91 @@
@@ -81,7 +78,7 @@ index 0000000..e7183cd
 +    check_target_env_call(["apt-get", "update"])
 +
 +    if fw_type == "efi":
-+        efi_boot_loader = libcalamares.job.configuration["efiBootLoader"]
++        efi_boot_loader = libcalamares.job.configuration.get("efiBootLoader")
 +        if efi_boot_loader == "systemd-boot":
 +            #target_apt_install(["systemd-boot"])
 +            # NOTE: systemd-boot doesn't exist in Debian yet
@@ -109,9 +106,6 @@ index 0000000..e7183cd
 +    install_bootloader_package(fw_type)
 +
 +    return None
-diff --git a/src/modules/aptgrubinstall/module.desc b/src/modules/aptgrubinstall/module.desc
-new file mode 100644
-index 0000000..371c921
 --- /dev/null
 +++ b/src/modules/aptgrubinstall/module.desc
 @@ -0,0 +1,5 @@
@@ -120,6 +114,3 @@ index 0000000..371c921
 +name:       "aptgrubinstall"
 +interface:  "python"
 +script:     "main.py"
--- 
-2.7.4
-
