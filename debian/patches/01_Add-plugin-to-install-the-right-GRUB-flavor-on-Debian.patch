@@ -14,7 +14,7 @@ Tanglu, and will also be of help for other distributions.
 
 --- /dev/null
 +++ b/src/modules/aptgrubinstall/main.py
-@@ -0,0 +1,91 @@
+@@ -0,0 +1,93 @@
 +#!/usr/bin/env python3
 +# -*- coding: utf-8 -*-
 +#
@@ -63,8 +63,10 @@ Tanglu, and will also be of help for other distributions.
 +
 +    # mount live medium
 +    live_medium_path = "/tmp/live-medium"
-+    check_target_env_call(["mkdir", "-p", live_medium_path])
-+    check_target_env_call(["mount", "/dev/cdrom", live_medium_path])
++    live_medium_path_full = os.path.join(root_mount_point, "tmp", "live-medium")
++
++    subprocess.call(["mkdir", "-p", live_medium_path_full])
++    subprocess.call(["mount", "--bind", "/cdrom", live_medium_path_full])
 +
 +    # write the repository snippet.
 +    # the suite "stable" is usually symlinked to the actual suite name, e.g. "dasyatis" in Tanglu.
@@ -90,8 +92,8 @@ Tanglu, and will also be of help for other distributions.
 +
 +    # cleanup
 +    os.remove(repo_snippet)
-+    check_target_env_call(["umount", live_medium_path])
-+    target_env_call(["rmdir", live_medium_path])
++    subprocess.call(["umount", live_medium_path_full])
++    subprocess.call(["rmdir", live_medium_path_full])
 +    target_env_call(["apt-get", "update"])
 +
 +def run():
