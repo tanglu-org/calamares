@@ -1,3 +1,9 @@
+calamares (2.2.2-0tanglu4) staging; urgency=medium
+
+  * Make installation from USB medium work (TT: #222)
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 14 Jul 2016 17:07:48 +0200
+
 calamares (2.2.2-0tanglu3) staging; urgency=medium
 
   * Don't fail if efiBootLoader setting is not set.
