@@ -1,3 +1,9 @@
+calamares (2.3-0tanglu1) staging; urgency=medium
+
+  * New upstream release: 2.3
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 14 Jul 2016 17:15:34 +0200
+
 calamares (2.2.2-0tanglu4) staging; urgency=medium
 
   * Make installation from USB medium work (TT: #222)
