@@ -1,6 +1,7 @@
 #!/usr/bin/make -f
 
-CALAMARES_BUILD_FLAGS = -DWITH_PARTITIONMANAGER=1
+CALAMARES_BUILD_FLAGS = -DWITH_PARTITIONMANAGER=ON \
+	-DWEBVIEW_FORCE_WEBKIT=ON
 
 %:
 	dh $@ --dbg-package=calamares-dbg --with kf5 --parallel
