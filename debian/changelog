@@ -1,3 +1,10 @@
+calamares (2.3-0tanglu2) staging; urgency=medium
+
+  * Enforce building with WebKit instead of WebEngine
+  * Bump standards version: No change needed
+
+ -- Matthias Klumpp <mak@debian.org>  Thu, 14 Jul 2016 19:42:52 +0200
+
 calamares (2.3-0tanglu1) staging; urgency=medium
 
   * New upstream release: 2.3
