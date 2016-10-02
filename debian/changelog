@@ -1,3 +1,10 @@
+calamares (2.4.1-0tanglu1) staging; urgency=medium
+
+  * New upstream version: 2.4.1
+  * Give pkexec a shell as parent to correctly launch on GNOME
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 02 Oct 2016 22:50:21 +0200
+
 calamares (2.3-0tanglu2) staging; urgency=medium
 
   * Enforce building with WebKit instead of WebEngine
