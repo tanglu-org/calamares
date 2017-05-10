@@ -97,6 +97,7 @@ isIso9660( const Device* device )
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
     : device( _device )
     , partitionModel( new PartitionModel )
+    , immutableDevice( new Device( *_device ) )
 {}
 
 PartitionCoreModule::DeviceInfo::~DeviceInfo()
@@ -235,7 +236,7 @@ PartitionCoreModule::bootLoaderModel() const
 }
 
 PartitionModel*
-PartitionCoreModule::partitionModelForDevice( Device* device ) const
+PartitionCoreModule::partitionModelForDevice( const Device* device ) const
 {
     DeviceInfo* info = infoForDevice( device );
     Q_ASSERT( info );
@@ -244,14 +245,14 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
 
 
 Device*
-PartitionCoreModule::createImmutableDeviceCopy( Device* device )
+PartitionCoreModule::immutableDeviceCopy( const Device* device )
 {
-    CoreBackend* backend = CoreBackendManager::self()->backend();
+    Q_ASSERT( device );
+    DeviceInfo* info = infoForDevice( device );
+    if ( !info )
+        return nullptr;
 
-    QString node = device->deviceNode();
-    cDebug() << "Creating immutable copy for node:" << node;
-    Device* deviceBefore = backend->scanDevice( node );
-    return deviceBefore;
+    return info->immutableDevice.data();
 }
 
 
@@ -440,6 +441,7 @@ PartitionCoreModule::jobs() const
         lst << info->jobs;
         devices << info->device.data();
     }
+    cDebug() << "Creating FillGlobalStorageJob with bootLoader path" << m_bootLoaderInstallPath;
     lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
 
 
@@ -547,29 +549,14 @@ PartitionCoreModule::scanForEfiSystemPartitions()
         devices.append( device );
     }
 
-    //FIXME: Unfortunately right now we have to call sgdisk manually because
-    //       the KPM submodule does not expose the ESP flag from libparted.
-    //       The following findPartitions call and lambda should be scrapped and
-    //       rewritten based on libKPM.     -- Teo 5/2015
     QList< Partition* > efiSystemPartitions =
         KPMHelpers::findPartitions( devices,
                                  []( Partition* partition ) -> bool
     {
-        QProcess process;
-        process.setProgram( "sgdisk" );
-        process.setArguments( { "-i",
-                                QString::number( partition->number() ),
-                                partition->devicePath() } );
-        process.setProcessChannelMode( QProcess::MergedChannels );
-        process.start();
-        if ( process.waitForFinished() )
+        if ( partition->activeFlags().testFlag( PartitionTable::FlagEsp ) )
         {
-            if ( process.readAllStandardOutput()
-                    .contains( "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" ) )
-            {
-                cDebug() << "Found EFI system partition at" << partition->partitionPath();
-                return true;
-            }
+            cDebug() << "Found EFI system partition at" << partition->partitionPath();
+            return true;
         }
         return false;
     } );
@@ -581,12 +568,15 @@ PartitionCoreModule::scanForEfiSystemPartitions()
 }
 
 PartitionCoreModule::DeviceInfo*
-PartitionCoreModule::infoForDevice( Device* device ) const
+PartitionCoreModule::infoForDevice( const Device* device ) const
 {
-    for ( auto deviceInfo : m_deviceInfos )
+    for ( auto it = m_deviceInfos.constBegin();
+          it != m_deviceInfos.constEnd(); ++it )
     {
-        if ( deviceInfo->device.data() == device )
-            return deviceInfo;
+        if ( ( *it )->device.data() == device )
+            return *it;
+        if ( ( *it )->immutableDevice.data() == device )
+            return *it;
     }
     return nullptr;
 }
@@ -607,6 +597,7 @@ PartitionCoreModule::findPartitionByMountPoint( const QString& mountPoint ) cons
 void
 PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 {
+    cDebug() << "PCM::setBootLoaderInstallPath" << path;
     m_bootLoaderInstallPath = path;
 }
 
@@ -696,7 +687,6 @@ QList< PartitionCoreModule::SummaryInfo >
 PartitionCoreModule::createSummaryInfo() const
 {
     QList< SummaryInfo > lst;
-    CoreBackend* backend = CoreBackendManager::self()->backend();
     for ( auto deviceInfo : m_deviceInfos )
     {
         if ( !deviceInfo->isDirty() )
@@ -705,7 +695,7 @@ PartitionCoreModule::createSummaryInfo() const
         summaryInfo.deviceName = deviceInfo->device->name();
         summaryInfo.deviceNode = deviceInfo->device->deviceNode();
 
-        Device* deviceBefore = backend->scanDevice( deviceInfo->device->deviceNode() );
+        Device* deviceBefore = deviceInfo->immutableDevice.data();
         summaryInfo.partitionModelBefore = new PartitionModel;
         summaryInfo.partitionModelBefore->init( deviceBefore, m_osproberLines );
         // Make deviceBefore a child of partitionModelBefore so that it is not

@@ -19,6 +19,7 @@
 #include "Module.h"
 
 #include "ProcessJobModule.h"
+#include "CppJobModule.h"
 #include "ViewModule.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/YamlUtils.h"
@@ -28,6 +29,10 @@
 
 #ifdef WITH_PYTHON
 #include "PythonJobModule.h"
+#endif
+
+#ifdef WITH_PYTHONQT
+#include "PythonQtViewModule.h"
 #endif
 
 #include <yaml-cpp/yaml.h>
@@ -70,13 +75,26 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
                << instanceId;
         return nullptr;
     }
-    if ( typeString == "view" && intfString == "qtplugin" )
+    if ( typeString == "view" )
     {
-        m = new ViewModule();
+        if ( intfString == "qtplugin" )
+        {
+            m = new ViewModule();
+        }
+#ifdef WITH_PYTHONQT
+        else if ( intfString == "pythonqt" )
+        {
+            m = new PythonQtViewModule();
+        }
+#endif
     }
     else if ( typeString == "job" )
     {
-        if ( intfString == "process" )
+        if ( intfString == "qtplugin" )
+        {
+            m = new CppJobModule();
+        }
+        else if ( intfString == "process" )
         {
             m = new ProcessJobModule();
         }
@@ -207,6 +225,38 @@ QString
 Module::location() const
 {
     return m_directory;
+}
+
+
+QString
+Module::typeString() const
+{
+    switch ( type() )
+    {
+    case Job:
+        return "Job Module";
+    case View:
+        return "View Module";
+    }
+    return QString();
+}
+
+
+QString
+Module::interfaceString() const
+{
+    switch ( interface() )
+    {
+    case ProcessInterface:
+        return "External process";
+    case PythonInterface:
+        return "Python (Boost.Python)";
+    case PythonQtInterface:
+        return "Python (experimental)";
+    case QtPluginInterface:
+        return "Qt Plugin";
+    }
+    return QString();
 }
 
 

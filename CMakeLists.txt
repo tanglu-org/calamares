@@ -49,14 +49,16 @@ endif()
 include( MacroOptionalFindPackage )
 include( MacroLogFeature )
 
-set( QT_VERSION 5.4.0 )
+set( QT_VERSION 5.6.0 )
 
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
 find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 
-option( WITH_PYTHON "Enable Python modules support." ON )
+option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_CRASHREPORTER "Build with CrashReporter" ON )
+option( INSTALL_CONFIG "Install configuration files" ON)
+option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
 
 if( CMAKE_SYSTEM_PROCESSOR MATCHES "arm" OR NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libcrashreporter-qt/CMakeLists.txt" )
     message( STATUS "Build of crashreporter disabled." )
@@ -84,10 +86,22 @@ if ( PYTHONLIBS_FOUND )
         FALSE "1.54.0"
         "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
     )
+
+    macro_optional_find_package( PythonQt )
+    macro_log_feature( PYTHONQT_FOUND
+        "PythonQt"
+        "A Python embedding solution for Qt applications."
+        "http://pythonqt.sourceforge.net"
+        FALSE "3.1"
+        "PythonQt is used for the Python modules API."
+    )
 endif()
 
 if ( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
     set( WITH_PYTHON OFF )
+endif()
+if ( PYTHONLIBS_NOTFOUND OR NOT PYTHONQT_FOUND )
+    set( WITH_PYTHONQT OFF )
 endif()
 
 ###
@@ -100,9 +114,9 @@ set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer frame
 set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr hr hu id is it_IT ja lt nl pl pt_BR pt_PT ro ru sk sv th tr_TR zh_CN zh_TW )
 
 ### Bump version here
-set( CALAMARES_VERSION_MAJOR 2 )
-set( CALAMARES_VERSION_MINOR 4 )
-set( CALAMARES_VERSION_PATCH 1 )
+set( CALAMARES_VERSION_MAJOR 3 )
+set( CALAMARES_VERSION_MINOR 1 )
+set( CALAMARES_VERSION_PATCH 0 )
 set( CALAMARES_VERSION_RC 0 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
@@ -167,7 +181,15 @@ add_subdirectory( src )
 macro_display_feature_log()
 
 if ( NOT WITH_PYTHON )
-    message( "-- WARNING: Building Calamares without Python support. Python modules will not work.\n" )
+    message( "-- WARNING: Building Calamares without Python support. Legacy Python job modules will not work.\n" )
+endif()
+if ( NOT WITH_PYTHONQT )
+    message( "-- WARNING: Building Calamares without PythonQt support. Python modules will not work.\n" )
+endif()
+
+
+if ( NOT INSTALL_CONFIG )
+    message( "-- WARNING: Configuration files will not be installed.\n" )
 endif()
 
 # Add all targets to the build-tree export set
@@ -211,12 +233,14 @@ install(
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
 
-install(
-    FILES
-        settings.conf
-    DESTINATION
-        share/calamares
-)
+if (INSTALL_CONFIG)
+    install(
+        FILES
+            settings.conf
+        DESTINATION
+            share/calamares
+    )
+endif()
 
 install(
   FILES

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -82,12 +82,16 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_beforePartitionLabelsView( nullptr )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
+    , m_enableEncryptionWidget( true )
 {
     setupUi( this );
 
     m_defaultFsType = Calamares::JobQueue::instance()->
                         globalStorage()->
                         value( "defaultFileSystemType" ).toString();
+    m_enableEncryptionWidget = Calamares::JobQueue::instance()->
+                               globalStorage()->
+                               value( "enableLuksAutomatedPartitioning" ).toBool();
     if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
         m_defaultFsType = "ext4";
 
@@ -561,8 +565,20 @@ ChoicePage::onLeave()
     }
     else    // installPath is then passed to the bootloader module for MBR setup
     {
-        if ( m_bootloaderComboBox.isNull() )
-            m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
+        if ( !m_isEfi )
+        {
+            if ( m_bootloaderComboBox.isNull() )
+            {
+                m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
+            }
+            else
+            {
+                QVariant var = m_bootloaderComboBox->currentData( BootLoaderModel::BootLoaderPathRole );
+                if ( !var.isValid() )
+                    return;
+                m_core->setBootLoaderInstallPath( var.toString() );
+            }
+        }
     }
 }
 
@@ -590,7 +606,7 @@ ChoicePage::doAlongsideApply()
             qint64 oldLastSector = candidate->lastSector();
             qint64 newLastSector = firstSector +
                                    m_afterPartitionSplitterWidget->splitPartitionSize() /
-                                   dev->logicalSectorSize();
+                                   dev->logicalSize();
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
             Partition* newPartition = nullptr;
@@ -813,7 +829,7 @@ ChoicePage::updateDeviceStatePreview()
     m_beforePartitionLabelsView = new PartitionLabelsView( m_previewBeforeFrame );
     m_beforePartitionLabelsView->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
 
-    Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
+    Device* deviceBefore = m_core->immutableDeviceCopy( currentDevice );
 
     PartitionModel* model = new PartitionModel( m_beforePartitionBarsView );
     model->init( deviceBefore, m_core->osproberEntries() );
@@ -884,7 +900,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     {
     case Alongside:
         {
-            m_encryptWidget->show();
+            if ( m_enableEncryptionWidget )
+                m_encryptWidget->show();
             m_previewBeforeLabel->setText( tr( "Current:" ) );
             m_selectLabel->setText( tr( "<strong>Select a partition to shrink, "
                                         "then drag the bottom bar to resize</strong>" ) );
@@ -930,7 +947,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Erase:
     case Replace:
         {
-            m_encryptWidget->show();
+            if ( m_enableEncryptionWidget )
+                m_encryptWidget->show();
             m_previewBeforeLabel->setText( tr( "Current:" ) );
             m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
             m_afterPartitionBarsView->setNestedPartitionsMode( mode );
@@ -1100,7 +1118,7 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
 
     // When the chosen bootloader device changes, we update the choice in the PCM
     connect( bcb, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
-             [this]( int newIndex )
+             this, [this]( int newIndex )
     {
         QComboBox* bcb = qobject_cast< QComboBox* >( sender() );
         if ( bcb )

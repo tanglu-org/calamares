@@ -365,7 +365,8 @@ LocalePage::init( const QString& initialRegion,
     // because it's not 1995.
     for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); )
     {
-        if ( !it->contains( "UTF-8", Qt::CaseInsensitive ) )
+        if ( !it->contains( "UTF-8", Qt::CaseInsensitive ) &&
+             !it->contains( "utf8", Qt::CaseInsensitive ) )
             it = m_localeGenLines.erase( it );
         else
             ++it;
@@ -473,6 +474,8 @@ LocalePage::updateGlobalStorage()
             ->insert( "locationRegion", location.region );
     Calamares::JobQueue::instance()->globalStorage()
             ->insert( "locationZone", location.zone );
+    Calamares::JobQueue::instance()->globalStorage()
+            ->insert( "locale", m_selectedLocaleConfiguration.myLanguageLocaleBcp47);
 
     // If we're in chroot mode (normal install mode), then we immediately set the
     // timezone on the live system.

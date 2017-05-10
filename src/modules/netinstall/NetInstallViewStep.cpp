@@ -1,6 +1,7 @@
 /*
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo <shainer@chakraos.org>
+ *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -125,13 +126,31 @@ NetInstallViewStep::onLeave()
     cDebug() << "Leaving netinstall, adding packages to be installed"
              << "to global storage";
 
-    if ( !m_widget->selectedPackages().empty() )
-    {
-        QMap<QString, QVariant> packagesWithOperation;
-        // Gets all packages selected in the page; includes groups that are
-        // selected by default but not displayed.
-        packagesWithOperation.insert( "install", m_widget->selectedPackages() );
+    QMap<QString, QVariant> packagesWithOperation;
+    QList<PackageTreeItem::ItemData> packages = m_widget->selectedPackages();
+    QVariantList installPackages;
+    QVariantList tryInstallPackages;
+    cDebug() << "Processing";
 
+    for ( auto package : packages )
+    {
+        QMap<QString, QVariant> details;
+        details.insert( "pre-script", package.preScript );
+        details.insert( "package", package.packageName );
+        details.insert( "post-script", package.postScript );
+        if ( package.isCritical )
+            installPackages.append( details );
+        else
+            tryInstallPackages.append( details );
+    }
+
+    if ( !installPackages.empty() )
+        packagesWithOperation.insert( "install", QVariant( installPackages ) );
+    if ( !tryInstallPackages.empty() )
+        packagesWithOperation.insert( "try_install", QVariant( tryInstallPackages ) );
+
+    if ( !packagesWithOperation.isEmpty() )
+    {
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         gs->insert( "packageOperations", QVariant( packagesWithOperation ) );
     }
