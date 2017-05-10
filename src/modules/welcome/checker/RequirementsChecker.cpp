@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,9 +33,13 @@
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDir>
+#include <QEventLoop>
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QProcess>
 #include <QTimer>
 
@@ -185,6 +189,7 @@ RequirementsChecker::widget() const
 void
 RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    bool incompleteConfiguration = false;
     if ( configurationMap.contains( "requiredStorage" ) &&
          ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
            configurationMap.value( "requiredStorage" ).type() == QVariant::Int ) )
@@ -199,6 +204,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         m_requiredStorageGB = 3.;
+        incompleteConfiguration = true;
     }
 
     if ( configurationMap.contains( "requiredRam" ) &&
@@ -208,11 +214,36 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         bool ok = false;
         m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
         if ( !ok )
+        {
             m_requiredRamGB = 1.;
+            incompleteConfiguration = true;
+        }
     }
     else
     {
         m_requiredRamGB = 1.;
+        incompleteConfiguration = true;
+    }
+
+    if ( configurationMap.contains( "internetCheckUrl" ) &&
+         configurationMap.value( "internetCheckUrl" ).type() == QVariant::String )
+    {
+        m_checkHasInternetUrl = configurationMap.value( "internetCheckUrl" ).toString().trimmed();
+        if ( m_checkHasInternetUrl.isEmpty() ||
+             !QUrl( m_checkHasInternetUrl ).isValid() )
+        {
+            cDebug() << "Invalid internetCheckUrl in welcome.conf" << m_checkHasInternetUrl
+                     << "reverting to default (http://example.com).";
+            m_checkHasInternetUrl = "http://example.com";
+            incompleteConfiguration = true;
+        }
+    }
+    else
+    {
+        cDebug() << "internetCheckUrl is undefined in welcome.conf, "
+                    "reverting to default (http://example.com).";
+        m_checkHasInternetUrl = "http://example.com";
+        incompleteConfiguration = true;
     }
 
     if ( configurationMap.contains( "check" ) &&
@@ -221,12 +252,27 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_entriesToCheck.clear();
         m_entriesToCheck.append( configurationMap.value( "check" ).toStringList() );
     }
+    else
+        incompleteConfiguration = true;
 
     if ( configurationMap.contains( "required" ) &&
          configurationMap.value( "required" ).type() == QVariant::List )
     {
         m_entriesToRequire.clear();
         m_entriesToRequire.append( configurationMap.value( "required" ).toStringList() );
+    }
+    else
+        incompleteConfiguration = true;
+
+    if ( incompleteConfiguration )
+    {
+        cDebug() << "WARNING: The RequirementsChecker configuration map provided by "
+                    "the welcome module configuration file is incomplete or "
+                    "incorrect.\n"
+                    "Startup will continue for debugging purposes, but one or "
+                    "more checks might not function correctly.\n"
+                    "RequirementsChecker configuration map:\n"
+                 << configurationMap;
     }
 }
 
@@ -315,29 +361,21 @@ RequirementsChecker::checkHasPower()
 bool
 RequirementsChecker::checkHasInternet()
 {
-    const QString NM_SVC_NAME( "org.freedesktop.NetworkManager" );
-    const QString NM_INTF_NAME( "org.freedesktop.NetworkManager" );
-    const QString NM_PATH( "/org/freedesktop/NetworkManager" );
-    const int NM_STATE_CONNECTED_GLOBAL = 70;
+    // default to true in the QNetworkAccessManager::UnknownAccessibility case
+    QNetworkAccessManager qnam( this );
+    bool hasInternet = qnam.networkAccessible() == QNetworkAccessManager::Accessible;
 
-    QDBusInterface nmIntf( NM_SVC_NAME,
-                           NM_PATH,
-                           NM_INTF_NAME,
-                           QDBusConnection::systemBus(), 0 );
-
-    bool ok = false;
-    int nmState = nmIntf.property( "state" ).toInt( &ok );
-
-    if ( !ok || !nmIntf.isValid() )
+    if ( !hasInternet && qnam.networkAccessible() == QNetworkAccessManager::UnknownAccessibility )
     {
-        // We can't talk to NM, so no idea.  Wild guess: we're connected
-        // using ssh with X forwarding, and are therefore connected.  This
-        // allows us to proceed with a minimum of complaint.
-        Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", true );
-        return true;
+        QNetworkRequest req = QNetworkRequest( QUrl( m_checkHasInternetUrl ) );
+        QNetworkReply* reply = qnam.get( req );
+        QEventLoop loop;
+        connect( reply, &QNetworkReply::finished,
+                 &loop, &QEventLoop::quit );
+        loop.exec();
+        if( reply->bytesAvailable() )
+            hasInternet = true;
     }
-
-    bool hasInternet = nmState == NM_STATE_CONNECTED_GLOBAL;
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
     return hasInternet;

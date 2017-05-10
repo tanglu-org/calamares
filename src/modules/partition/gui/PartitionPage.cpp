@@ -23,6 +23,7 @@
 #include "core/BootLoaderModel.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
+#include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
 #include "gui/CreatePartitionDialog.h"
@@ -56,7 +57,10 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     , m_ui( new Ui_PartitionPage )
     , m_lastSelectedBootLoaderIndex(-1)
     , m_core( core )
+    , m_isEfi( false )
 {
+    m_isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
+
     m_ui->setupUi( this );
     m_ui->partitionLabelsView->setVisible(
             Calamares::JobQueue::instance()->globalStorage()->
@@ -92,14 +96,14 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
 
     connect( m_core, &PartitionCoreModule::isDirtyChanged, m_ui->revertButton, &QWidget::setEnabled );
 
-    connect( m_ui->partitionTreeView, &QAbstractItemView::activated, this, &PartitionPage::onPartitionViewActivated );
+    connect( m_ui->partitionTreeView, &QAbstractItemView::doubleClicked, this, &PartitionPage::onPartitionViewActivated );
     connect( m_ui->revertButton, &QAbstractButton::clicked, this, &PartitionPage::onRevertClicked );
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
     connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
     connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
 
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() ) {
+    if ( m_isEfi ) {
         m_ui->bootLoaderComboBox->hide();
         m_ui->label_3->hide();
     }
@@ -176,7 +180,10 @@ PartitionPage::onCreateClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition->parent(), this );
+    QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog( model->device(),
+                                                                       partition->parent(),
+                                                                       getCurrentUsedMountpoints(),
+                                                                       this );
     dlg->initFromFreeSpace( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -265,7 +272,13 @@ PartitionPage::onPartitionViewActivated()
 void
 PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 {
-    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), this );
+    QStringList mountPoints = getCurrentUsedMountpoints();
+    mountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
+
+    QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog( device,
+                                                                       partition->parent(),
+                                                                       mountPoints,
+                                                                       this );
     dlg->initFromPartitionToCreate( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -279,7 +292,10 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 void
 PartitionPage::editExistingPartition( Device* device, Partition* partition )
 {
-    QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, this );
+    QStringList mountPoints = getCurrentUsedMountpoints();
+    mountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
+
+    QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, mountPoints, this );
     if ( dlg->exec() == QDialog::Accepted )
         dlg->applyChanges( m_core );
     delete dlg;
@@ -288,9 +304,13 @@ PartitionPage::editExistingPartition( Device* device, Partition* partition )
 void
 PartitionPage::updateBootLoaderInstallPath()
 {
+    if ( m_isEfi || !m_ui->bootLoaderComboBox->isVisible() )
+        return;
+
     QVariant var = m_ui->bootLoaderComboBox->currentData( BootLoaderModel::BootLoaderPathRole );
     if ( !var.isValid() )
         return;
+    qDebug() << "PartitionPage::updateBootLoaderInstallPath" << var.toString();
     m_core->setBootLoaderInstallPath( var.toString() );
 }
 
@@ -374,4 +394,25 @@ PartitionPage::updateBootLoaderIndex()
     if ( m_lastSelectedBootLoaderIndex >= 0 && m_ui->bootLoaderComboBox->count() ) {
         m_ui->bootLoaderComboBox->setCurrentIndex( m_lastSelectedBootLoaderIndex );
     }
+}
+
+QStringList
+PartitionPage::getCurrentUsedMountpoints()
+{
+    QModelIndex index = m_core->deviceModel()->index(
+                            m_ui->deviceComboBox->currentIndex(), 0 );
+    if ( !index.isValid() )
+        return QStringList();
+
+    Device* device = m_core->deviceModel()->deviceForIndex( index );
+    QStringList mountPoints;
+
+    for ( Partition* partition : device->partitionTable()->children() )
+    {
+        const QString& mountPoint = PartitionInfo::mountPoint( partition );
+        if ( !mountPoint.isEmpty() )
+            mountPoints << mountPoint;
+    }
+
+    return mountPoints;
 }

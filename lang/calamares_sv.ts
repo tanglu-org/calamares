@@ -102,11 +102,27 @@
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
+        <source>Type:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
+        <source>none</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
+        <source>Interface:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
         <source>Tools</source>
         <translation>Verktyg</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="182"/>
         <source>Debug information</source>
         <translation>Avlusningsinformation</translation>
     </message>
@@ -304,22 +320,22 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>CalamaresPython::Helper</name>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="262"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="263"/>
         <source>Unknown exception type</source>
         <translation>Okänd undantagstyp</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="275"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="276"/>
         <source>unparseable Python error</source>
         <translation>Otolkbart Pythonfel</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="291"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="292"/>
         <source>unparseable Python traceback</source>
         <translation>Otolkbar Python-traceback</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="295"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="296"/>
         <source>Unfetchable Python error.</source>
         <translation>Ohämtbart Pythonfel</translation>
     </message>
@@ -386,109 +402,109 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>Formulär</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="123"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
         <source>After:</source>
         <translation>Efter:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="236"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Manuell partitionering&lt;/strong&gt;&lt;br/&gt;Du kan själv skapa och ändra storlek på partitionerna.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
         <source>Boot loader location:</source>
         <translation>Sökväg till uppstartshanterare:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="906"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="923"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 kommer att förminskas till %2 MB och en ny %3 MB-partition kommer att skapas för %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <source>Select storage de&amp;vice:</source>
         <translation>Välj lagringsenhet:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="888"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="934"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="905"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1032"/>
         <source>Current:</source>
         <translation>Nuvarande:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="766"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="782"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="906"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1023"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1061"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1071"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1089"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1080"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1098"/>
         <source>EFI system partition:</source>
         <translation>EFI system partition:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1183"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1170"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1210"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1272"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1188"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1228"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1252"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1290"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1199"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1217"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1229"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1267"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1192"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1223"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1247"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1285"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1179"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1215"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1238"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1276"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1197"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1233"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1256"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1294"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1224"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1242"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1280"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
@@ -506,7 +522,7 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>Rensar monteringspunkter för partitionering på %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
         <source>Cleared all mounts for %1</source>
         <translation>Rensade alla monteringspunkter för %1</translation>
     </message>
@@ -562,12 +578,12 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="168"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="178"/>
         <source>Flags:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="148"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>&amp;Mount Point:</source>
         <translation>&amp;Monteringspunkt:</translation>
     </message>
@@ -582,24 +598,29 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
         <source>En&amp;crypt</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="161"/>
         <source>Logical</source>
         <translation>Logisk</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="160"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="166"/>
         <source>Primary</source>
         <translation>Primär</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="177"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="183"/>
         <source>GPT</source>
         <translation>GPT</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -749,22 +770,22 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>useradd stoppades med felkod %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="167"/>
-        <source>Cannot set full name for user %1.</source>
-        <translation>Kan inte sätta helt namn för användare %1.</translation>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
+        <source>Cannot add user %1 to groups: %2.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="169"/>
-        <source>chfn terminated with error code %1.</source>
-        <translation>chfn stoppades med felkod %1.</translation>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
+        <source>usermod terminated with error code %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="179"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Kunde inte ge användaren %1 äganderätt till sin hemkatalog.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown stoppades med felkod %1.</translation>
     </message>
@@ -849,6 +870,32 @@ Alla ändringar kommer att gå förlorade.</translation>
     </message>
 </context>
 <context>
+    <name>DracutLuksCfgJob</name>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
+        <source>Write LUKS configuration for Dracut to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="133"/>
+        <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="149"/>
+        <source>Failed to open %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>DummyCppJob</name>
+    <message>
+        <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
+        <source>Dummy C++ Job</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>EditExistingPartitionDialog</name>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
@@ -895,6 +942,11 @@ Alla ändringar kommer att gå förlorade.</translation>
         <source>Flags:</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>EncryptWidget</name>
@@ -927,37 +979,37 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="120"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="123"/>
         <source>Set partition information</source>
         <translation>Ange partitionsinformation</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="143"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="148"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="166"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="174"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="178"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Installera uppstartshanterare på &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="184"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="188"/>
         <source>Setting up mount points.</source>
         <translation>Ställer in monteringspunkter.</translation>
     </message>
@@ -1032,24 +1084,6 @@ Alla ändringar kommer att gå förlorade.</translation>
     </message>
 </context>
 <context>
-    <name>GroupSelectionWidget</name>
-    <message>
-        <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="20"/>
-        <source>Frame</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="29"/>
-        <source>group</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="36"/>
-        <source>description</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>InteractiveTerminalPage</name>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="69"/>
@@ -1095,7 +1129,7 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>KeyboardViewStep</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="49"/>
+        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="50"/>
         <source>Keyboard</source>
         <translation>Tangentbord</translation>
     </message>
@@ -1222,12 +1256,12 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>Ändra...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="390"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Sätt tidszon till %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="465"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation type="unfinished"/>
@@ -1298,7 +1332,17 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="98"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="71"/>
+        <source>Name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="81"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation type="unfinished"/>
     </message>
@@ -1306,7 +1350,7 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>NetInstallViewStep</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
+        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
         <source>Package selection</source>
         <translation type="unfinished"/>
     </message>
@@ -1521,7 +1565,7 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>Installera uppstartshanterare på:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="156"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="160"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Är du säker på att du vill skapa en ny partitionstabell på %1?</translation>
     </message>
@@ -1589,28 +1633,38 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>Nuvarande:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="259"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="261"/>
         <source>After:</source>
         <translation>Efter:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="403"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="405"/>
         <source>No EFI system partition configured</source>
         <translation>Ingen EFI system partition konfigurerad</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="404"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="406"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="418"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="420"/>
         <source>EFI system partition flag not set</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="419"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="456"/>
+        <source>Boot partition not encrypted</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
+        <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1628,22 +1682,22 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="195"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>unknown</source>
         <translation>okänd</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="197"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="203"/>
         <source>extended</source>
         <translation>utökad</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="199"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="205"/>
         <source>unformatted</source>
         <translation>oformaterad</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>swap</source>
         <translation type="unfinished"/>
     </message>
@@ -1731,52 +1785,52 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="57"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="61"/>
         <source>Gathering system information...</source>
         <translation>Samlar systeminformation...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="102"/>
         <source>has at least %1 GB available drive space</source>
         <translation>har minst %1 GB tillgängligt utrymme på hårddisken</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="104"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
         <source>has at least %1 GB working memory</source>
         <translation>har minst %1 GB arbetsminne</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="114"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="122"/>
         <source>is plugged in to a power source</source>
         <translation>är ansluten till en strömkälla</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="123"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>Systemet är inte anslutet till någon strömkälla.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
         <source>is connected to the Internet</source>
         <translation>är ansluten till internet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="131"/>
         <source>The system is not connected to the Internet.</source>
         <translation>Systemet är inte anslutet till internet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>Installationsprogammet körs inte med administratörsrättigheter.</translation>
     </message>
@@ -1874,71 +1928,127 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>SetKeyboardLayoutJob</name>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="59"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
         <translation>Sätt tangentbordsmodell till %1, layout till %2-%3</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="320"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>Misslyckades med att skriva tangentbordskonfiguration för konsolen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
         <source>Failed to write to %1</source>
         <translation>Misslyckades med att skriva %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="324"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation>Misslyckades med att skriva tangentbordskonfiguration för X11.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="330"/>
+        <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SetPartFlagsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="48"/>
         <source>Set flags on partition %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="51"/>
+        <source>Set flags on %1MB %2 partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="55"/>
+        <source>Set flags on new partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="66"/>
         <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="59"/>
-        <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
-        <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="70"/>
+        <source>Clear flags on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
-        <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <source>Clear flags on new partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="78"/>
+        <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
+        <source>Flag %1MB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
+        <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="102"/>
+        <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="106"/>
+        <source>Clearing flags on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
+        <source>Clearing flags on new partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
+        <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="120"/>
+        <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="126"/>
+        <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
         <source>The installer failed to set flags on partition %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="148"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>Kunde inte öppna enhet &quot;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="157"/>
         <source>Could not open partition table on device &apos;%1&apos;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="169"/>
         <source>Could not find partition &apos;%1&apos;.</source>
         <translation type="unfinished"/>
     </message>
@@ -1979,12 +2089,22 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>rootMonteringspunkt är %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="74"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
+        <source>Cannot disable root account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
+        <source>passwd terminated with error code %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
         <source>Cannot set password for user %1.</source>
         <translation>Kan inte ställa in lösenord för användare %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="76"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod avslutade med felkod %1.</translation>
     </message>
@@ -2046,33 +2166,33 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="269"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
         <source>Your username is too long.</source>
         <translation>Ditt användarnamn är för långt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="279"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="285"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Ditt användarnamn innehåller otillåtna tecken! Endast små bokstäver och siffror tillåts.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="323"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname is too short.</source>
         <translation>Ditt värdnamn är för kort.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="334"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
         <source>Your hostname is too long.</source>
         <translation>Ditt värdnamn är för långt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="351"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Ditt värdnamn innehåller otillåtna tecken! Endast bokstäver, siffror och bindestreck tillåts.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="376"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="409"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="382"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="415"/>
         <source>Your passwords do not match!</source>
         <translation>Dina lösenord matchar inte!</translation>
     </message>
@@ -2129,11 +2249,11 @@ Alla ändringar kommer att gå förlorade.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="195"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="196"/>
         <source>%1 support</source>
         <translation>%1-support</translation>
     </message>
@@ -2141,7 +2261,7 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation>Välkommen</translation>
     </message>

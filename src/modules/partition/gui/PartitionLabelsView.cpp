@@ -47,7 +47,7 @@ QStringList
 buildUnknownDisklabelTexts( Device* dev )
 {
     QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
-                          KFormat().formatByteSize( dev->totalSectors() * dev->logicalSectorSize() ) };
+                          KFormat().formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
     return texts;
 }
 
@@ -207,7 +207,7 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
     else if ( index.data( PartitionModel::OsproberNameRole ).toString().isEmpty() )
     {
         firstLine = index.data().toString();
-        if ( firstLine.startsWith( "/dev/sd" ) )
+        if ( firstLine.startsWith( "/dev/" ) )
             firstLine.remove( 0, 5 );   // "/dev/"
     }
     else

@@ -11,6 +11,7 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
 set( libSources
+    CppJob.cpp
     GlobalStorage.cpp
     Job.cpp
     JobQueue.cpp
@@ -24,6 +25,7 @@ set( libSources
     utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/Logger.cpp
+    utils/PluginFactory.cpp
     utils/Retranslator.cpp
 )
 
@@ -53,6 +55,20 @@ if( WITH_PYTHON )
         ${OPTIONAL_PRIVATE_LIBRARIES}
         ${PYTHON_LIBRARIES}
         ${Boost_LIBRARIES}
+    )
+endif()
+
+if( WITH_PYTHONQT )
+    include_directories(${PYTHON_INCLUDE_DIRS})
+    link_directories(${PYTHON_LIBRARIES})
+
+    include_directories(${PYTHONQT_INCLUDE_DIR})
+    link_directories(${PYTHONQT_LIBRARY})
+
+    set( OPTIONAL_PRIVATE_LIBRARIES
+        ${OPTIONAL_PRIVATE_LIBRARIES}
+        ${PYTHON_LIBRARIES}
+        ${PYTHONQT_LIBRARY}
     )
 endif()
 

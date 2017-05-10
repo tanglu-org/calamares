@@ -1,6 +1,7 @@
 /*
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
+ *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,7 +20,10 @@
 #ifndef NETINSTALLPAGE_H
 #define NETINSTALLPAGE_H
 
+#include "PackageModel.h"
+#include "PackageTreeItem.h"
 #include "Typedefs.h"
+
 #include <QWidget>
 #include <QAbstractButton>
 #include <QNetworkAccessManager>
@@ -27,7 +31,6 @@
 // required forward declarations
 class QByteArray;
 class QNetworkReply;
-class GroupSelectionWidget;
 
 namespace Ui
 {
@@ -37,26 +40,6 @@ class Page_NetInst;
 class NetInstallPage : public QWidget
 {
     Q_OBJECT
-
-    // Internal representation of a package group.
-    struct Group
-    {
-        Group()
-            : Group( "","",false, false ) { }
-        Group( QString name, QString description, bool selected, bool hidden )
-            : name( name ), description( description ), selected( selected ), hidden( hidden ) { }
-        Group( QString name, QString description )
-            : Group( name, description, false, false ) { }
-
-        QString name;
-        QString description;
-        QStringList packages;
-
-        // See README.md for a description of these two fields.
-        bool selected = false;
-        bool hidden = false;
-    };
-
 public:
     NetInstallPage( QWidget* parent = nullptr );
 
@@ -72,7 +55,7 @@ public:
     // Returns the list of packages belonging to groups that are
     // selected in the view in this given moment. No data is cached here, so
     // this function does not have constant time.
-    QStringList selectedPackages() const;
+    QList<PackageTreeItem::ItemData> selectedPackages() const;
 
 public slots:
     void dataIsHere( QNetworkReply* );
@@ -91,11 +74,7 @@ private:
     // Handles connection with the remote URL storing the configuration.
     QNetworkAccessManager m_networkManager;
 
-    QHash<QString, Group> m_groups;
-    // For each group name, store the selection widget to retrieve UI
-    // properties.
-    QHash<QString, GroupSelectionWidget*> m_groupWidgets;
-    QList<QString> m_groupOrder;
+    PackageModel* m_groups;
 };
 
 #endif // NETINSTALLPAGE_H

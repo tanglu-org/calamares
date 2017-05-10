@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -100,13 +100,13 @@ swapSuggestion( const qint64 availableSpaceB )
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPassphrase )
 {
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
     bool isEfi = false;
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
         isEfi = true;
 
-    QString defaultFsType = Calamares::JobQueue::instance()->
-                                globalStorage()->
-                                value( "defaultFileSystemType" ).toString();
+    QString defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
         defaultFsType = "ext4";
 
@@ -128,11 +128,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         empty_space_size = 1;
     }
 
-    qint64 firstFreeSector = empty_space_size MiB / dev->logicalSectorSize() + 1;
+    qint64 firstFreeSector = empty_space_size MiB / dev->logicalSize() + 1;
 
     if ( isEfi )
     {
-        qint64 lastSector = firstFreeSector + ( uefisys_part_size MiB / dev->logicalSectorSize() );
+        qint64 lastSector = firstFreeSector + ( uefisys_part_size MiB / dev->logicalSize() );
         core->createPartitionTable( dev, PartitionTable::gpt );
         Partition* efiPartition = KPMHelpers::createNewPartition(
             dev->partitionTable(),
@@ -140,14 +140,13 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             PartitionRole( PartitionRole::Primary ),
             FileSystem::Fat32,
             firstFreeSector,
-            lastSector
+            lastSector,
+            PartitionTable::FlagEsp
         );
         PartitionInfo::setFormat( efiPartition, true );
-        PartitionInfo::setMountPoint( efiPartition, Calamares::JobQueue::instance()
-                                                        ->globalStorage()
-                                                        ->value( "efiSystemPartition" )
+        PartitionInfo::setMountPoint( efiPartition, gs->value( "efiSystemPartition" )
                                                         .toString() );
-        core->createPartition( dev, efiPartition );
+        core->createPartition( dev, efiPartition, PartitionTable::FlagEsp | PartitionTable::FlagBoot );
         firstFreeSector = lastSector + 1;
     }
     else
@@ -155,22 +154,26 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         core->createPartitionTable( dev, PartitionTable::msdos );
     }
 
+    const bool mayCreateSwap = !gs->value( "neverCreateSwap" ).toBool();
     bool shouldCreateSwap = false;
-    qint64 availableSpaceB = ( dev->totalSectors() - firstFreeSector ) * dev->logicalSectorSize();
-    qint64 suggestedSwapSizeB = swapSuggestion( availableSpaceB );
-    qint64 requiredSpaceB =
-            ( Calamares::JobQueue::instance()->
-              globalStorage()->
-              value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) GiB +
-            suggestedSwapSizeB;
+    qint64 suggestedSwapSizeB = 0;
 
-    // If there is enough room for ESP + root + swap, create swap, otherwise don't.
-    shouldCreateSwap = availableSpaceB > requiredSpaceB;
+    if ( mayCreateSwap )
+    {
+        qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
+        suggestedSwapSizeB = swapSuggestion( availableSpaceB );
+        qint64 requiredSpaceB =
+                ( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) GiB +
+                suggestedSwapSizeB;
 
-    qint64 lastSectorForRoot = dev->totalSectors() - 1; //last sector of the device
+        // If there is enough room for ESP + root + swap, create swap, otherwise don't.
+        shouldCreateSwap = availableSpaceB > requiredSpaceB;
+    }
+
+    qint64 lastSectorForRoot = dev->totalLogical() - 1; //last sector of the device
     if ( shouldCreateSwap )
     {
-        lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSectorSize() + 1;
+        lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSize() + 1;
     }
 
     Partition* rootPartition = nullptr;
@@ -212,7 +215,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
                 PartitionRole( PartitionRole::Primary ),
                 FileSystem::LinuxSwap,
                 lastSectorForRoot + 1,
-                dev->totalSectors() - 1
+                dev->totalLogical() - 1
             );
         }
         else
@@ -223,7 +226,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
                 PartitionRole( PartitionRole::Primary ),
                 FileSystem::LinuxSwap,
                 lastSectorForRoot + 1,
-                dev->totalSectors() - 1,
+                dev->totalLogical() - 1,
                 luksPassphrase
             );
         }
