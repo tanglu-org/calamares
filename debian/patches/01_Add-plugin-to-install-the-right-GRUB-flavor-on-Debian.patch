@@ -14,7 +14,7 @@ Tanglu, and will also be of help for other distributions.
 
 --- /dev/null
 +++ b/src/modules/aptgrubinstall/main.py
-@@ -0,0 +1,93 @@
+@@ -0,0 +1,94 @@
 +#!/usr/bin/env python3
 +# -*- coding: utf-8 -*-
 +#
@@ -101,10 +101,11 @@ Tanglu, and will also be of help for other distributions.
 +
 +    :return:
 +    """
-+    if libcalamares.globalstorage.value("bootLoader") is None:
-+        return None
 +
 +    fw_type = libcalamares.globalstorage.value("firmwareType")
++    if libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi":
++        return None
++
 +    install_bootloader_package(fw_type)
 +
 +    return None
