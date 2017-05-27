@@ -1,4 +1,10 @@
-calamares (3.1.0-1) staging; urgency=medium
+calamares (3.1.0-0tanglu2) staging; urgency=medium
+
+  * Install GRUB correctly on EFI
+
+ -- Matthias Klumpp <mak@debian.org>  Sun, 28 May 2017 01:10:08 +0200
+
+calamares (3.1.0-0tanglu1) staging; urgency=medium
 
   * New upstream version: 3.1.0
 
